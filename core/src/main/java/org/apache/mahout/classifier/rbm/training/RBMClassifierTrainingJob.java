@@ -54,6 +54,8 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     boolean finetuning;
     Path[] batches = null;
     int labelcount;
+    int nrGibbsSampling = 5;
+    int rbmNrtoTrain;
 	
 	public static void main(String[] args) throws Exception {
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
@@ -66,8 +68,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    addOption(DefaultOptionCreator.maxIterationsOption().create());
 	    addOption("structure", "s", "comma-separated list of layer sizes", false);
 	    addOption("labelcount", "lc", "total count of labels existent in the training set", true);
-	    addOption("learningrate", "lr", "learning rate at the beginning of training", false);
-	    addOption("momentum", "m", "momentum of learning at the beginning", false);
+	    addOption("learningrate", "lr", "learning rate at the beginning of training", "0.005");
+	    addOption("momentum", "m", "momentum of learning at the beginning", "0.5");
+	    addOption("rbmnr", "nr", "rbm to train, < 0 means train all", "-1");
+	    addOption("nrgibbs", "gn", "number of gibbs sampling used in contrastive divergence", "5");
 	    addOption(new DefaultOptionBuilder()
 					.withLongName(DefaultOptionCreator.SEQUENTIAL_METHOD)
 					.withRequired(false)
@@ -109,8 +113,8 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    boolean seq = hasOption("sequential");
 	    monitor = hasOption("monitor");
 	    initbiases = !hasOption("nobiases");
-	    greedy = !hasOption("nofinetuning");
-	    finetuning = !hasOption("nogreedy");
+	    finetuning = !hasOption("nofinetuning");
+	    greedy = !hasOption("nogreedy");
 	    
 	    if(fs.isFile(input))
 	    	batches = new Path[]{input};
@@ -121,14 +125,12 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				batches[i] = stati[i].getPath();
 			}	    		
 	    }
-	    if(hasOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION))
-	    	iterations = Integer.valueOf(getOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION));
-    	
-	    if(hasOption("learningrate"))
-	    	learningrate = Double.parseDouble(getOption("learningrate"));
-	    
-	    if(hasOption("momentum"))
-	    	momentum = Double.parseDouble(getOption("momentum"));
+
+	    iterations = Integer.valueOf(getOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION));
+    	learningrate = Double.parseDouble(getOption("learningrate"));	    
+    	momentum = Double.parseDouble(getOption("momentum"));
+    	rbmNrtoTrain = Integer.parseInt(getOption("rbmnr"));
+    	nrGibbsSampling = Integer.parseInt(getOption("nrgibbs"));	    
 	    
 	    if (hasOption(DefaultOptionCreator.OVERWRITE_OPTION)||!fs.exists(output)||fs.listStatus(output).length<=0) {
 	      HadoopUtil.delete(getConf(), getOutputPath());
@@ -173,30 +175,52 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    logger.info("Biases initialized");
 	    }
 	    
+	    //greedy pre training with gradually decreasing learningrates
 	    if(greedy) {
-	    	if(monitor) {
-		    	double error = classifierError(batches[0]);
-				logger.info("Classifiers average error on batch "+batches[0].getName()+" before greedy pretraining: "+error);
-		    }
-		    //greedy pre training
-		    for(int i=0; i<rbmCl.getDbm().getRbmCount(); i++) 
-				for(Path batch : batches) 
+	    	double tempLearningrate = learningrate;
+	    	if(rbmNrtoTrain<0)
+			   //train all rbms
+			    for(int i=0; i<rbmCl.getDbm().getRbmCount(); i++) 
+					for(Path batch : batches) {
+						tempLearningrate = learningrate;
+					    for (int j = 0; j < iterations; j++) {
+					    	if(j>iterations/2)
+					    		tempLearningrate -= 2*learningrate/(iterations*batches.length);
+					    	if(seq) {
+					    		if(!trainGreedySeq(i, batch, j, tempLearningrate))
+					    			return -1; 
+					    	}
+					    	else
+							    if(!trainGreedyMR(i, batch, j, tempLearningrate))
+							    	return -1;					    
+					    }
+					    if(monitor) {
+							double error = rbmError(batch, i);
+							logger.info(i+"-RBM's average reconstruction error on batch "+batch.getName()+
+										" after (another)"+iterations+" iteration(s) of pretraining: "+error);
+						}
+					}
+	    	else 
+	    		//train just wanted rbm
+	    		for(Path batch : batches) {
+	    			tempLearningrate = learningrate;
 				    for (int j = 0; j < iterations; j++) {
+				    	if(j>iterations/2)
+				    		tempLearningrate -= 2*learningrate/(iterations*batches.length);
 				    	if(seq) {
-				    		if(!trainGreedySeq(i, batch, j))
+				    		if(!trainGreedySeq(rbmNrtoTrain, batch, j,tempLearningrate))
 						    	return -1; 
 				    	}
 				    	else
-						    if(!trainGreedyMR(i, batch, j))
-						    	return -1;
-				    	
-						if(monitor) {
-							double error = rbmError(batch, i);
-							logger.info(i+"-RBM's average reconstruction error on batch "+batch.getName()+
-										" after "+(j+1)+" iteration(s) of pretraining: "+error);
-						}
-					    
+						    if(!trainGreedyMR(rbmNrtoTrain, batch, j,tempLearningrate))
+						    	return -1;					    
 				    }
+				    if(monitor) {
+						double error = rbmError(batch, rbmNrtoTrain);
+						logger.info(rbmNrtoTrain+"-RBM's average reconstruction error on batch "+batch.getName()+
+									" after (another)"+iterations+" iteration(s) of pretraining: "+error);
+					}
+	    		}
 		    
 		    //weight normalization to avoid double counting
 		    for(int i=1; i<rbmCl.getDbm().getRbmCount()-1; i++) {
@@ -204,13 +228,6 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    	rbm.setWeightMatrix(rbm.getWeightMatrix().times(0.5));
 		    }
 		    rbmCl.serialize(output, getConf());
-		    
-		    
-		    if(monitor) {
-		    	double error = classifierError(batches[0]);
-				logger.info("Classifiers average error on batch "+batches[0].getName()+" after greedy pretraining: "+error);
-		    }
-	    
 	    }
 	    
 	    if(finetuning) {
@@ -306,14 +323,14 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
-	private boolean trainGreedySeq(int rbmNr, Path batch, int iteration) {
+	private boolean trainGreedySeq(int rbmNr, Path batch, int iteration, double learningrate) {
     	int batchsize = 0;
     	DeepBoltzmannMachine dbm = rbmCl.getDbm();
     	Vector label = new DenseVector(labelcount);
     	Matrix updates = null;
     	
 		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
-			CDTrainer trainer = new CDTrainer(learningrate, 2);
+			CDTrainer trainer = new CDTrainer(learningrate, nrGibbsSampling);
 			label.assign(0);
 			label.set(record.getFirst().get(), 1);
 			
@@ -348,7 +365,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
-	private boolean trainGreedyMR(int rbmNr, Path batch, int iteration)
+	private boolean trainGreedyMR(int rbmNr, Path batch, int iteration, double learningrate)
 			throws IOException, InterruptedException, ClassNotFoundException {
 		long batchsize;
 		HadoopUtil.delete(getConf(), getTempPath(WEIGHT_UPDATES));
@@ -361,6 +378,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		trainRBM.getConfiguration().set("rbmNr", String.valueOf(rbmNr));
 		trainRBM.getConfiguration().set("labelcount", String.valueOf(labelcount));
 		trainRBM.getConfiguration().set("learningrate", String.valueOf(learningrate));
+		trainRBM.getConfiguration().set("nrGibbsSampling", String.valueOf(nrGibbsSampling));
 
 		trainRBM.setCombinerClass(RBMGreedyPreTrainingReducer.class);
 		

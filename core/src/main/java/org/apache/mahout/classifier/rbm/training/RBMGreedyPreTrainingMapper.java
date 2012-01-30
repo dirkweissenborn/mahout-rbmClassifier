@@ -24,19 +24,21 @@ public class RBMGreedyPreTrainingMapper extends Mapper<IntWritable, VectorWritab
 	double learningRate;
 	private Vector label;
 	private int nr;
+	private int nrGibbsSampling;
 	
 	protected void setup(Context context) throws java.io.IOException ,InterruptedException {
 		Configuration conf = context.getConfiguration();
 		Path p = HadoopUtil.cachedFile(conf);
 		dbm = DeepBoltzmannMachine.materialize(p, conf);
 		learningRate = Double.parseDouble(conf.get("learningrate"));
-		nr = Integer.parseInt(conf.get("rbmNr"));		
+		nr = Integer.parseInt(conf.get("rbmNr"));
+		nrGibbsSampling = Integer.parseInt(conf.get("nrGibbsSampling"));
 		Integer count = Integer.parseInt(conf.get("labelcount"));
 		label = new RandomAccessSparseVector(count);		
 	};
 		
 	protected void map(IntWritable key, VectorWritable value, Context context) throws java.io.IOException ,InterruptedException {
-		CDTrainer trainer = new CDTrainer(learningRate, 5);
+		CDTrainer trainer = new CDTrainer(learningRate, nrGibbsSampling);
 				
 		label.set(key.get(), 1);
 		
