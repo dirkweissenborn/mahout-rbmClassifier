@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1229032/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd
+END
+TrainASFEmail.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1228875/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TrainASFEmail.java
+END
+TrainNewsGroups.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TrainNewsGroups.java
+END
+ValidateAdaptiveLogistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1154459/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/ValidateAdaptiveLogistic.java
+END
+RunLogistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/RunLogistic.java
+END
+TrainLogistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TrainLogistic.java
+END
+RunAdaptiveLogistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/RunAdaptiveLogistic.java
+END
+SGDHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/SGDHelper.java
+END
+SGDInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/SGDInfo.java
+END
+TrainAdaptiveLogistic.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TrainAdaptiveLogistic.java
+END
+AdaptiveLogisticModelParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1183642/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/AdaptiveLogisticModelParameters.java
+END
+SimpleCsvExamples.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1177970/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/SimpleCsvExamples.java
+END
+PrintResourceOrFile.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1131350/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/PrintResourceOrFile.java
+END
+TestASFEmail.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1227174/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TestASFEmail.java
+END
+NewsgroupHelper.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1229032/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/NewsgroupHelper.java
+END
+TestNewsGroups.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/TestNewsGroups.java
+END
+LogisticModelParameters.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1143542/mahout/trunk/examples/src/main/java/org/apache/mahout/classifier/sgd/LogisticModelParameters.java
+END

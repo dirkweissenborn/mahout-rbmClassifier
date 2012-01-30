@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1225419/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce
+END
+Builder.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/Builder.java
+END
+MapredOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/MapredOutput.java
+END
+MapredMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/MapredMapper.java
+END
+Classifier.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/Classifier.java
+END

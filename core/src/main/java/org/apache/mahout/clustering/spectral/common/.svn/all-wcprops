@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1225596/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common
+END
+MatrixDiagonalizeJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1172995/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/MatrixDiagonalizeJob.java
+END
+VectorCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1172995/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/VectorCache.java
+END
+AffinityMatrixInputJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1172995/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/AffinityMatrixInputJob.java
+END
+AffinityMatrixInputReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/AffinityMatrixInputReducer.java
+END
+IntDoublePairWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1072858/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/IntDoublePairWritable.java
+END
+UnitVectorizerJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1172995/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/UnitVectorizerJob.java
+END
+VertexWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1072858/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/VertexWritable.java
+END
+VectorMatrixMultiplicationJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1225596/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/VectorMatrixMultiplicationJob.java
+END
+AffinityMatrixInputMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/common/AffinityMatrixInputMapper.java
+END

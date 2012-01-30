@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd
+END
+ModelSerializerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1131421/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/ModelSerializerTest.java
+END
+PassiveAggressiveTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1131476/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/PassiveAggressiveTest.java
+END
+GradientMachineTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1131481/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/GradientMachineTest.java
+END
+AdaptiveLogisticRegressionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1067485/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/AdaptiveLogisticRegressionTest.java
+END
+OnlineBaseTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/OnlineBaseTest.java
+END
+OnlineLogisticRegressionTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1131476/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/OnlineLogisticRegressionTest.java
+END
+CsvRecordFactoryTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1004469/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/sgd/CsvRecordFactoryTest.java
+END

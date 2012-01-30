@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/common/jdbc
+END
+AbstractJDBCComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/common/jdbc/AbstractJDBCComponent.java
+END
+EachRowIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/common/jdbc/EachRowIterator.java
+END
+ResultSetIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1090865/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/common/jdbc/ResultSetIterator.java
+END

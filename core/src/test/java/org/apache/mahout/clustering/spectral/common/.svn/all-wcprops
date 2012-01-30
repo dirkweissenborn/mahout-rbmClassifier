@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1131350/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common
+END
+TestAffinityMatrixInputJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common/TestAffinityMatrixInputJob.java
+END
+TestVectorCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1131350/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common/TestVectorCache.java
+END
+TestUnitVectorizerJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common/TestUnitVectorizerJob.java
+END
+TestVectorMatrixMultiplicationJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common/TestVectorMatrixMultiplicationJob.java
+END
+TestMatrixDiagonalizeJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/common/TestMatrixDiagonalizeJob.java
+END

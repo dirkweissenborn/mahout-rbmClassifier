@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools
+END
+UDistrib.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/UDistrib.java
+END
+TreeVisualizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/TreeVisualizer.java
+END
+Describe.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/Describe.java
+END
+ForestVisualizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/ForestVisualizer.java
+END
+Frequencies.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/Frequencies.java
+END
+FrequenciesJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/tools/FrequenciesJob.java
+END

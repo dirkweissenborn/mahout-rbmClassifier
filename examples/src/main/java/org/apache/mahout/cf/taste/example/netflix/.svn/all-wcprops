@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1147583/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix
+END
+NetflixDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1147583/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/NetflixDataModel.java
+END
+NetflixRecommenderEvaluatorRunner.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/NetflixRecommenderEvaluatorRunner.java
+END
+NetflixRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/949271/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/NetflixRecommender.java
+END
+TransposeToByUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1144184/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/TransposeToByUser.java
+END
+NetflixRecommenderBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/NetflixRecommenderBuilder.java
+END
+NetflixFileDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1147583/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/netflix/NetflixFileDataModel.java
+END

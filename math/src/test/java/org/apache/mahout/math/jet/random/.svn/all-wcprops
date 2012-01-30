@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random
+END
+DistributionChecks.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1087985/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random/DistributionChecks.java
+END
+GammaTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/992277/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random/GammaTest.java
+END
+NormalTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1056703/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random/NormalTest.java
+END
+ExponentialTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1056703/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random/ExponentialTest.java
+END
+NegativeBinomialTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1090865/mahout/trunk/math/src/test/java/org/apache/mahout/math/jet/random/NegativeBinomialTest.java
+END

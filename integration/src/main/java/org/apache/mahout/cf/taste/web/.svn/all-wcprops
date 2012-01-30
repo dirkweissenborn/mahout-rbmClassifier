@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1196818/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/web
+END
+RecommenderServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1196818/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/web/RecommenderServlet.java
+END
+RecommenderWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/web/RecommenderWrapper.java
+END
+RecommenderSingleton.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1196818/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/web/RecommenderSingleton.java
+END

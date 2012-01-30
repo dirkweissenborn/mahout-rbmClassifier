@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data
+END
+DataLoaderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/DataLoaderTest.java
+END
+DataTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/DataTest.java
+END
+DatasetTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/DatasetTest.java
+END
+DataConverterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/DataConverterTest.java
+END
+DescriptorUtilsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1196578/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/DescriptorUtilsTest.java
+END
+Utils.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/data/Utils.java
+END

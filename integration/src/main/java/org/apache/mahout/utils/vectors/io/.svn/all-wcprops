@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1207951/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io
+END
+TermInfoWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io/TermInfoWriter.java
+END
+TextualVectorWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1131350/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io/TextualVectorWriter.java
+END
+VectorWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io/VectorWriter.java
+END
+DelimitedTermInfoWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1131421/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io/DelimitedTermInfoWriter.java
+END
+SequenceFileVectorWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1131350/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/vectors/io/SequenceFileVectorWriter.java
+END

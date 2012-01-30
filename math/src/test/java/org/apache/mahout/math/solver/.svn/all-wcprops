@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1210428/mahout/trunk/math/src/test/java/org/apache/mahout/math/solver
+END
+LSMRTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/test/java/org/apache/mahout/math/solver/LSMRTest.java
+END
+TestConjugateGradientSolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1210428/mahout/trunk/math/src/test/java/org/apache/mahout/math/solver/TestConjugateGradientSolver.java
+END

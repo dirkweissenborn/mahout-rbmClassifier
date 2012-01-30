@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/eigencuts
+END
+TestEigencutsAffinityCutsJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/eigencuts/TestEigencutsAffinityCutsJob.java
+END
+TestEigencutsSensitivityJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1003188/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/spectral/eigencuts/TestEigencutsSensitivityJob.java
+END

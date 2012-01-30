@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/neighborhood
+END
+AbstractUserNeighborhood.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1004046/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/neighborhood/AbstractUserNeighborhood.java
+END
+NearestNUserNeighborhood.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/neighborhood/NearestNUserNeighborhood.java
+END
+CachingUserNeighborhood.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1004046/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/neighborhood/CachingUserNeighborhood.java
+END
+ThresholdUserNeighborhood.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/neighborhood/ThresholdUserNeighborhood.java
+END

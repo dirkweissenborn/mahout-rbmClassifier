@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1196578/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/mapreduce/inmem
+END
+InMemInputFormatTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1196578/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/mapreduce/inmem/InMemInputFormatTest.java
+END
+InMemInputSplitTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1196578/mahout/trunk/core/src/test/java/org/apache/mahout/classifier/df/mapreduce/inmem/InMemInputSplitTest.java
+END

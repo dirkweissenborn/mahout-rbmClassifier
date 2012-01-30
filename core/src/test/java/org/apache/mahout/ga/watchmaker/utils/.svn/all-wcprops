@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/ga/watchmaker/utils
+END
+DummyCandidate.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/ga/watchmaker/utils/DummyCandidate.java
+END
+DummyEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/ga/watchmaker/utils/DummyEvaluator.java
+END

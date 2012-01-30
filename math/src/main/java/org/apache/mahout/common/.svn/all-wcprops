@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/asf/!svn/ver/1140097/mahout/trunk/math/src/main/java/org/apache/mahout/common
+END
+RandomWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1140097/mahout/trunk/math/src/main/java/org/apache/mahout/common/RandomWrapper.java
+END
+DevURandomSeedGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1091538/mahout/trunk/math/src/main/java/org/apache/mahout/common/DevURandomSeedGenerator.java
+END
+RandomUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1098706/mahout/trunk/math/src/main/java/org/apache/mahout/common/RandomUtils.java
+END
+FastRandomSeedGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1079083/mahout/trunk/math/src/main/java/org/apache/mahout/common/FastRandomSeedGenerator.java
+END

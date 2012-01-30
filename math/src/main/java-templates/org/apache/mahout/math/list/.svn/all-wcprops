@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/943565/mahout/trunk/math/src/main/java-templates/org/apache/mahout/math/list
+END
+ValueTypeArrayList.java.t
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/943565/mahout/trunk/math/src/main/java-templates/org/apache/mahout/math/list/ValueTypeArrayList.java.t
+END
+AbstractValueTypeList.java.t
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/943565/mahout/trunk/math/src/main/java-templates/org/apache/mahout/math/list/AbstractValueTypeList.java.t
+END

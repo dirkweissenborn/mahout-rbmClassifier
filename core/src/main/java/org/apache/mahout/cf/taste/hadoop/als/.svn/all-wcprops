@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als
+END
+DatasetSplitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1197433/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als/DatasetSplitter.java
+END
+FactorizationEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1200366/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als/FactorizationEvaluator.java
+END
+ALSUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als/ALSUtils.java
+END
+ParallelALSFactorizationJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1200366/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als/ParallelALSFactorizationJob.java
+END
+RecommenderJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1197433/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/als/RecommenderJob.java
+END

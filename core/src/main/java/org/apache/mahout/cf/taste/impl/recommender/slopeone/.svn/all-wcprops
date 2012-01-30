@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone
+END
+SlopeOneRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone/SlopeOneRecommender.java
+END
+MemoryDiffStorage.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone/MemoryDiffStorage.java
+END

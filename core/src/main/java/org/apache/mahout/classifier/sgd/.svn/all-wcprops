@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1228875/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd
+END
+CrossFoldLearner.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/CrossFoldLearner.java
+END
+Gradient.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1003753/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/Gradient.java
+END
+ModelDissector.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1183642/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/ModelDissector.java
+END
+MixedGradient.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1160069/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/MixedGradient.java
+END
+PassiveAggressive.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/PassiveAggressive.java
+END
+RankingGradient.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1072858/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/RankingGradient.java
+END
+L2.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1177970/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/L2.java
+END
+L1.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1053787/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/L1.java
+END
+PriorFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1053787/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/PriorFunction.java
+END
+ElasticBandPrior.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1141538/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/ElasticBandPrior.java
+END
+ModelSerializer.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/ModelSerializer.java
+END
+RecordFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/998336/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/RecordFactory.java
+END
+GradientMachine.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/GradientMachine.java
+END
+AdaptiveLogisticRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1228875/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/AdaptiveLogisticRegression.java
+END
+PolymorphicWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/PolymorphicWritable.java
+END
+AbstractOnlineLogisticRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1197392/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/AbstractOnlineLogisticRegression.java
+END
+TPrior.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1177970/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/TPrior.java
+END
+UniformPrior.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1053787/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/UniformPrior.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1225419/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/package-info.java
+END
+OnlineLogisticRegression.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1089226/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/OnlineLogisticRegression.java
+END
+CsvRecordFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1143542/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/CsvRecordFactory.java
+END
+DefaultGradient.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1003753/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/sgd/DefaultGradient.java
+END

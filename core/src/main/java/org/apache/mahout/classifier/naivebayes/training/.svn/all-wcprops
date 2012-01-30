@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training
+END
+ThetaMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/ThetaMapper.java
+END
+IndexInstancesMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1180043/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/IndexInstancesMapper.java
+END
+WeightsMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1164014/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/WeightsMapper.java
+END
+ComplementaryThetaTrainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1142566/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/ComplementaryThetaTrainer.java
+END
+AbstractThetaTrainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/AbstractThetaTrainer.java
+END
+StandardThetaTrainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1142566/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/StandardThetaTrainer.java
+END
+TrainNaiveBayesJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1197342/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/naivebayes/training/TrainNaiveBayesJob.java
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/dirichlet
+END
+TestMapReduce.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/dirichlet/TestMapReduce.java
+END
+TestDirichletClustering.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/dirichlet/TestDirichletClustering.java
+END
+TestDistributions.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1131421/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/dirichlet/TestDistributions.java
+END

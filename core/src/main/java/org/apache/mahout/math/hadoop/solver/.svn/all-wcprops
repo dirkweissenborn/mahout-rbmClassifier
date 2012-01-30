@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/solver
+END
+DistributedConjugateGradientSolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/solver/DistributedConjugateGradientSolver.java
+END

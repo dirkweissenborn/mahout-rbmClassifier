@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model
+END
+GenericBooleanPrefDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1209577/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/GenericBooleanPrefDataModel.java
+END
+BooleanUserPreferenceArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1090865/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/BooleanUserPreferenceArray.java
+END
+GenericDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1202813/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/GenericDataModel.java
+END
+BooleanPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/BooleanPreference.java
+END
+BooleanItemPreferenceArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1090865/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/BooleanItemPreferenceArray.java
+END
+PlusAnonymousUserDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1147583/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/PlusAnonymousUserDataModel.java
+END
+AbstractDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/956950/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/AbstractDataModel.java
+END
+GenericUserPreferenceArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1090865/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/GenericUserPreferenceArray.java
+END
+PlusAnonymousUserLongPrimitiveIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/PlusAnonymousUserLongPrimitiveIterator.java
+END
+AbstractIDMigrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1091538/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/AbstractIDMigrator.java
+END
+MemoryIDMigrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/965135/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/MemoryIDMigrator.java
+END
+AbstractJDBCIDMigrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/965135/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/AbstractJDBCIDMigrator.java
+END
+MySQLJDBCIDMigrator.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1140141/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/MySQLJDBCIDMigrator.java
+END
+GenericItemPreferenceArray.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1090865/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/GenericItemPreferenceArray.java
+END
+GenericPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1084125/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/model/GenericPreference.java
+END

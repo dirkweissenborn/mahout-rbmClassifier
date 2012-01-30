@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl
+END
+DelegateDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/943565/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/DelegateDoubleMatrix1D.java
+END
+SelectedDenseDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SelectedDenseDoubleMatrix1D.java
+END
+SelectedDenseDoubleMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SelectedDenseDoubleMatrix2D.java
+END
+SparseDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SparseDoubleMatrix1D.java
+END
+DenseDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/DenseDoubleMatrix1D.java
+END
+SparseDoubleMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SparseDoubleMatrix2D.java
+END
+DenseDoubleMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/DenseDoubleMatrix2D.java
+END
+AbstractMatrix.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1098706/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/AbstractMatrix.java
+END
+SelectedSparseDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SelectedSparseDoubleMatrix1D.java
+END
+SelectedSparseDoubleMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1183642/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/SelectedSparseDoubleMatrix2D.java
+END
+WrapperDoubleMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1056703/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/WrapperDoubleMatrix1D.java
+END
+WrapperDoubleMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1056703/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/WrapperDoubleMatrix2D.java
+END
+AbstractMatrix1D.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1098706/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/AbstractMatrix1D.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1098706/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/package-info.java
+END
+AbstractMatrix2D.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1098706/mahout/trunk/math/src/main/java/org/apache/mahout/math/matrix/impl/AbstractMatrix2D.java
+END

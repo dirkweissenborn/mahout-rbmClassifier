@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/partial
+END
+PartialBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/partial/PartialBuilder.java
+END
+TreeID.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/partial/TreeID.java
+END
+Step1Mapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/partial/Step1Mapper.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1196578/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/mapreduce/partial/package-info.java
+END

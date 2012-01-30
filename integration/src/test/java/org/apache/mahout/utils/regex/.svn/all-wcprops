@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/test/java/org/apache/mahout/utils/regex
+END
+RegexUtilsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/test/java/org/apache/mahout/utils/regex/RegexUtilsTest.java
+END
+RegexMapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/test/java/org/apache/mahout/utils/regex/RegexMapperTest.java
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1171922/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone/jdbc
+END
+AbstractJDBCDiffStorage.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1171922/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone/jdbc/AbstractJDBCDiffStorage.java
+END
+MySQLJDBCDiffStorage.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1171922/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/recommender/slopeone/jdbc/MySQLJDBCDiffStorage.java
+END

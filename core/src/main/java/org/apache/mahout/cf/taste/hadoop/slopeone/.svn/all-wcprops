@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1209318/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone
+END
+SlopeOnePrefsToDiffsReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone/SlopeOnePrefsToDiffsReducer.java
+END
+FullRunningAverageAndStdDevWritable.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1209318/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone/FullRunningAverageAndStdDevWritable.java
+END
+ByItemIDComparator.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/949271/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone/ByItemIDComparator.java
+END
+SlopeOneDiffsToAveragesReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1209318/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone/SlopeOneDiffsToAveragesReducer.java
+END
+SlopeOneAverageDiffsJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1209318/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/hadoop/slopeone/SlopeOneAverageDiffsJob.java
+END

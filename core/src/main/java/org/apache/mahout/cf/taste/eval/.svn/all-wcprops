@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1225649/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval
+END
+DataModelBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/948935/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/DataModelBuilder.java
+END
+IRStatistics.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1213930/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/IRStatistics.java
+END
+RecommenderEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/RecommenderEvaluator.java
+END
+RelevantItemsDataSplitter.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1225649/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/RelevantItemsDataSplitter.java
+END
+RecommenderBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/RecommenderBuilder.java
+END
+RecommenderIRStatsEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/eval/RecommenderIRStatsEvaluator.java
+END

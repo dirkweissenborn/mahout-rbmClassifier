@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1177970/mahout/trunk/math/src/test/java/org/apache/mahout/math/stats
+END
+OnlineExponentialAverageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1087985/mahout/trunk/math/src/test/java/org/apache/mahout/math/stats/OnlineExponentialAverageTest.java
+END
+OnlineSummarizerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1177970/mahout/trunk/math/src/test/java/org/apache/mahout/math/stats/OnlineSummarizerTest.java
+END
+LogLikelihoodTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1177970/mahout/trunk/math/src/test/java/org/apache/mahout/math/stats/LogLikelihoodTest.java
+END

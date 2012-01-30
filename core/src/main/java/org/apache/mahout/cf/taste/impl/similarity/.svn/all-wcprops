@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1210544/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity
+END
+CachingUserSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1087985/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/CachingUserSimilarity.java
+END
+GenericItemSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/GenericItemSimilarity.java
+END
+UncenteredCosineSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1004046/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/UncenteredCosineSimilarity.java
+END
+LongPairMatchPredicate.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1039936/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/LongPairMatchPredicate.java
+END
+AveragingPreferenceInferrer.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/AveragingPreferenceInferrer.java
+END
+AbstractSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/AbstractSimilarity.java
+END
+GenericUserSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/GenericUserSimilarity.java
+END
+CityBlockSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1089773/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/CityBlockSimilarity.java
+END
+SpearmanCorrelationSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1130443/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/SpearmanCorrelationSimilarity.java
+END
+PearsonCorrelationSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/PearsonCorrelationSimilarity.java
+END
+AbstractItemSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/AbstractItemSimilarity.java
+END
+LogLikelihoodSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1138553/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/LogLikelihoodSimilarity.java
+END
+EuclideanDistanceSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1187238/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/EuclideanDistanceSimilarity.java
+END
+CachingItemSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1088059/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/CachingItemSimilarity.java
+END
+TanimotoCoefficientSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1210544/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/similarity/TanimotoCoefficientSimilarity.java
+END

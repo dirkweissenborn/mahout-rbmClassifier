@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1138664/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth
+END
+FPGrowthRetailDataTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth/FPGrowthRetailDataTest.java
+END
+PFPGrowthRetailDataTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1138664/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth/PFPGrowthRetailDataTest.java
+END
+TransactionTreeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth/TransactionTreeTest.java
+END
+FPGrowthTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth/FPGrowthTest.java
+END
+PFPGrowthTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1138664/mahout/trunk/core/src/test/java/org/apache/mahout/fpm/pfpgrowth/PFPGrowthTest.java
+END

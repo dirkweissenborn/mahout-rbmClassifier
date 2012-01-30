@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1199171/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd
+END
+ALSWRFactorizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1199171/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/ALSWRFactorizer.java
+END
+AbstractFactorizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1104139/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/AbstractFactorizer.java
+END
+Factorizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1091540/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/Factorizer.java
+END
+SVDPreference.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1084104/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/SVDPreference.java
+END
+SVDRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/SVDRecommender.java
+END
+ExpectationMaximizationSVDFactorizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1196517/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/ExpectationMaximizationSVDFactorizer.java
+END
+FilePersistenceStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/FilePersistenceStrategy.java
+END
+Factorization.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1094125/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/Factorization.java
+END
+PersistenceStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1094125/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/PersistenceStrategy.java
+END
+NoPersistenceStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1094125/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/svd/NoPersistenceStrategy.java
+END

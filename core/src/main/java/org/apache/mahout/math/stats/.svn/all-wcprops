@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/math/stats
+END
+GroupedOnlineAuc.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1087985/mahout/trunk/core/src/main/java/org/apache/mahout/math/stats/GroupedOnlineAuc.java
+END
+OnlineAuc.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1053787/mahout/trunk/core/src/main/java/org/apache/mahout/math/stats/OnlineAuc.java
+END
+GlobalOnlineAuc.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1089226/mahout/trunk/core/src/main/java/org/apache/mahout/math/stats/GlobalOnlineAuc.java
+END
+Sampler.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/math/stats/Sampler.java
+END

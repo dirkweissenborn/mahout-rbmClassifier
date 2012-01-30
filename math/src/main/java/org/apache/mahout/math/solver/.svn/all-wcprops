@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/main/java/org/apache/mahout/math/solver
+END
+JacobiConditioner.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/main/java/org/apache/mahout/math/solver/JacobiConditioner.java
+END
+LSMR.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/main/java/org/apache/mahout/math/solver/LSMR.java
+END
+ConjugateGradientSolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/main/java/org/apache/mahout/math/solver/ConjugateGradientSolver.java
+END
+Preconditioner.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1196818/mahout/trunk/math/src/main/java/org/apache/mahout/math/solver/Preconditioner.java
+END

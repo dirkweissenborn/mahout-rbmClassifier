@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1211715/mahout/trunk/integration/src/test/java/org/apache/mahout/clustering
+END
+TestClusterDumper.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1211715/mahout/trunk/integration/src/test/java/org/apache/mahout/clustering/TestClusterDumper.java
+END
+TestClusterEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1211715/mahout/trunk/integration/src/test/java/org/apache/mahout/clustering/TestClusterEvaluator.java
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/solver
+END
+TestDistributedConjugateGradientSolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/solver/TestDistributedConjugateGradientSolver.java
+END
+TestDistributedConjugateGradientSolverCLI.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/test/java/org/apache/mahout/math/hadoop/solver/TestDistributedConjugateGradientSolverCLI.java
+END

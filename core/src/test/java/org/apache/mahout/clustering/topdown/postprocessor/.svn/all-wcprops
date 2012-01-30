@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/topdown/postprocessor
+END
+ClusterCountReaderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/topdown/postprocessor/ClusterCountReaderTest.java
+END
+ClusterOutputPostProcessorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/topdown/postprocessor/ClusterOutputPostProcessorTest.java
+END

@@ -1,0 +1,20 @@
+K 10
+svn:ignore
+V 120
+*.ipr
+*.iws
+*.iml
+build
+output
+testdata
+dist
+.classpath
+.project
+.settings
+atlassian-ide-plugin.xml
+target
+input
+
+.idea
+
+END

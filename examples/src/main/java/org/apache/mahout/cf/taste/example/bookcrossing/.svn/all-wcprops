@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1183642/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing
+END
+BookCrossingBooleanRecommenderBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingBooleanRecommenderBuilder.java
+END
+BookCrossingRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/949271/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingRecommender.java
+END
+BookCrossingRecommenderBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingRecommenderBuilder.java
+END
+BookCrossingBooleanRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/949271/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingBooleanRecommender.java
+END
+BookCrossingDataModelBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingDataModelBuilder.java
+END
+BookCrossingDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1183642/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingDataModel.java
+END
+BookCrossingBooleanRecommenderEvaluatorRunner.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/repos/asf/!svn/ver/985313/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingBooleanRecommenderEvaluatorRunner.java
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/README
+END
+BookCrossingRecommenderEvaluatorRunner.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/985313/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/bookcrossing/BookCrossingRecommenderEvaluatorRunner.java
+END

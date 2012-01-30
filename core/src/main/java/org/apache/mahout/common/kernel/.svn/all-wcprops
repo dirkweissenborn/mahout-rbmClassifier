@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1132566/mahout/trunk/core/src/main/java/org/apache/mahout/common/kernel
+END
+NormalKernelProfile.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1132566/mahout/trunk/core/src/main/java/org/apache/mahout/common/kernel/NormalKernelProfile.java
+END
+TriangularKernelProfile.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1132566/mahout/trunk/core/src/main/java/org/apache/mahout/common/kernel/TriangularKernelProfile.java
+END
+IKernelProfile.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1132566/mahout/trunk/core/src/main/java/org/apache/mahout/common/kernel/IKernelProfile.java
+END

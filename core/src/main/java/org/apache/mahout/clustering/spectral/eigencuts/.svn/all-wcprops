@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts
+END
+EigencutsSensitivityJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsSensitivityJob.java
+END
+EigencutsSensitivityReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsSensitivityReducer.java
+END
+EigencutsAffinityCutsJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsAffinityCutsJob.java
+END
+EigencutsDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsDriver.java
+END
+EigencutsSensitivityNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1003188/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsSensitivityNode.java
+END
+EigencutsSensitivityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsSensitivityMapper.java
+END
+EigencutsKeys.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1003478/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/spectral/eigencuts/EigencutsKeys.java
+END

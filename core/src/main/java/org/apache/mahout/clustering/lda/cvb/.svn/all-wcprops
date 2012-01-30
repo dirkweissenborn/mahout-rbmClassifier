@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb
+END
+ModelTrainer.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/ModelTrainer.java
+END
+TopicModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/TopicModel.java
+END
+CVB0Driver.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/CVB0Driver.java
+END
+InMemoryCollapsedVariationalBayes0.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/InMemoryCollapsedVariationalBayes0.java
+END
+CachingCVB0PerplexityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/CachingCVB0PerplexityMapper.java
+END
+CVB0DocInferenceMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1210428/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/CVB0DocInferenceMapper.java
+END
+CVB0TopicTermVectorNormalizerMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1209794/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/CVB0TopicTermVectorNormalizerMapper.java
+END
+CachingCVB0Mapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/lda/cvb/CachingCVB0Mapper.java
+END

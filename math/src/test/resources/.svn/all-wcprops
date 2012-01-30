@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/repos/asf/!svn/ver/979554/mahout/trunk/math/src/test/resources
+END
+beta-test-data.csv
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/asf/!svn/ver/979554/mahout/trunk/math/src/test/resources/beta-test-data.csv
+END
+negative-binomial-test-data.csv
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/979554/mahout/trunk/math/src/test/resources/negative-binomial-test-data.csv
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1140141/mahout/trunk/examples/src/main/java/org/apache/mahout/clustering/minhash
+END
+LastfmDataConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1140141/mahout/trunk/examples/src/main/java/org/apache/mahout/clustering/minhash/LastfmDataConverter.java
+END
+LastfmClusterEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/clustering/minhash/LastfmClusterEvaluator.java
+END

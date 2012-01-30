@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/common/lucene
+END
+IteratorTokenStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1171239/mahout/trunk/core/src/main/java/org/apache/mahout/common/lucene/IteratorTokenStream.java
+END
+TokenStreamIterator.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1140141/mahout/trunk/core/src/main/java/org/apache/mahout/common/lucene/TokenStreamIterator.java
+END

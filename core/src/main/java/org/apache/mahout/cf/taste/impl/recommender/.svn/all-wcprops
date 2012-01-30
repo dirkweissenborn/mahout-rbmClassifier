@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1229032/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender
+END
+FarthestNeighborClusterSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/FarthestNeighborClusterSimilarity.java
+END
+TreeClusteringRecommender2.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/TreeClusteringRecommender2.java
+END
+NearestNeighborClusterSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/NearestNeighborClusterSimilarity.java
+END
+TopItems.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1201248/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/TopItems.java
+END
+ItemUserAverageRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1088059/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/ItemUserAverageRecommender.java
+END
+CachingRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/CachingRecommender.java
+END
+ByValueRecommendedItemComparator.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/950537/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/ByValueRecommendedItemComparator.java
+END
+AllUnknownItemsCandidateItemsStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1088059/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/AllUnknownItemsCandidateItemsStrategy.java
+END
+AbstractRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1130443/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/AbstractRecommender.java
+END
+RandomRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/RandomRecommender.java
+END
+AllSimilarItemsCandidateItemsStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1088059/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/AllSimilarItemsCandidateItemsStrategy.java
+END
+TreeClusteringRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/TreeClusteringRecommender.java
+END
+EstimatedPreferenceCapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/EstimatedPreferenceCapper.java
+END
+GenericItemBasedRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/GenericItemBasedRecommender.java
+END
+ItemAverageRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1088059/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/ItemAverageRecommender.java
+END
+ByRescoreComparator.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/ByRescoreComparator.java
+END
+GenericBooleanPrefItemBasedRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/GenericBooleanPrefItemBasedRecommender.java
+END
+ClusterSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/943565/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/ClusterSimilarity.java
+END
+PreferredItemsNeighborhoodCandidateItemsStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1130443/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/PreferredItemsNeighborhoodCandidateItemsStrategy.java
+END
+NullRescorer.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/950537/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/NullRescorer.java
+END
+GenericUserBasedRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1039936/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/GenericUserBasedRecommender.java
+END
+SamplingCandidateItemsStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/SamplingCandidateItemsStrategy.java
+END
+GenericRecommendedItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1098706/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/GenericRecommendedItem.java
+END
+SimilarUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1201248/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/SimilarUser.java
+END
+GenericBooleanPrefUserBasedRecommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1196818/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/GenericBooleanPrefUserBasedRecommender.java
+END
+AbstractCandidateItemsStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1094158/mahout/trunk/core/src/main/java/org/apache/mahout/cf/taste/impl/recommender/AbstractCandidateItemsStrategy.java
+END

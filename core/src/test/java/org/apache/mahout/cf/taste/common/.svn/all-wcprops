@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1131421/mahout/trunk/core/src/test/java/org/apache/mahout/cf/taste/common
+END
+CommonTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/992277/mahout/trunk/core/src/test/java/org/apache/mahout/cf/taste/common/CommonTest.java
+END
+TopKMinKTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1131421/mahout/trunk/core/src/test/java/org/apache/mahout/cf/taste/common/TopKMinKTest.java
+END

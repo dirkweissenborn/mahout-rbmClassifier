@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2
+END
+Track2Callable.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/Track2Callable.java
+END
+HybridSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1088059/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/HybridSimilarity.java
+END
+Track2RecommenderBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1082997/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/Track2RecommenderBuilder.java
+END
+UserResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1082997/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/UserResult.java
+END
+Track2Runner.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/Track2Runner.java
+END
+TrackData.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1082997/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/TrackData.java
+END
+Track2Recommender.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1083467/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/Track2Recommender.java
+END
+TrackItemSimilarity.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1089773/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/kddcup/track2/TrackItemSimilarity.java
+END

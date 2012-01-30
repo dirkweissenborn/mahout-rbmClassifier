@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1229032/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd
+END
+DataLine.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1140141/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/DataLine.java
+END
+CDRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1098706/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDRule.java
+END
+NominalAttr.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1098706/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/NominalAttr.java
+END
+Attribute.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/Attribute.java
+END
+Rule.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/Rule.java
+END
+CDGA.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1183661/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDGA.java
+END
+CDMutation.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDMutation.java
+END
+FileInfoParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/FileInfoParser.java
+END
+NumericalAttr.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/NumericalAttr.java
+END
+CDFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/943565/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDFactory.java
+END
+CDFitnessEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDFitnessEvaluator.java
+END
+DataSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1098706/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/DataSet.java
+END
+CDFitness.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/990892/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDFitness.java
+END
+CDCrossover.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1134456/mahout/trunk/examples/src/main/java/org/apache/mahout/ga/watchmaker/cd/CDCrossover.java
+END

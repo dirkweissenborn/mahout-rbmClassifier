@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/lda
+END
+TestMapReduce.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/lda/TestMapReduce.java
+END
+TestLDAInference.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/992277/mahout/trunk/core/src/test/java/org/apache/mahout/clustering/lda/TestLDAInference.java
+END

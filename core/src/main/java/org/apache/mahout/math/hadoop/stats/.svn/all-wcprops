@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/stats
+END
+VarianceTotals.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/stats/VarianceTotals.java
+END
+StandardDeviationCalculatorMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/stats/StandardDeviationCalculatorMapper.java
+END
+StandardDeviationCalculatorReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/stats/StandardDeviationCalculatorReducer.java
+END
+BasicStats.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/math/hadoop/stats/BasicStats.java
+END

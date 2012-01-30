@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex
+END
+FPGFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/FPGFormatter.java
+END
+URLDecodeTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/URLDecodeTransformer.java
+END
+IdentityFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/IdentityFormatter.java
+END
+IdentityTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/IdentityTransformer.java
+END
+RegexUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/RegexUtils.java
+END
+RegexMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/RegexMapper.java
+END
+ChainTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/ChainTransformer.java
+END
+AnalyzerTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/AnalyzerTransformer.java
+END
+RegexFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/RegexFormatter.java
+END
+RegexTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/RegexTransformer.java
+END
+RegexConverterDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1210428/mahout/trunk/integration/src/main/java/org/apache/mahout/utils/regex/RegexConverterDriver.java
+END

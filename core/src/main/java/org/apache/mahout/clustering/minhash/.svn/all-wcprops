@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1196658/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash
+END
+MinHashReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1134456/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash/MinHashReducer.java
+END
+HashFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1196616/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash/HashFactory.java
+END
+MinHashDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1196658/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash/MinHashDriver.java
+END
+HashFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1003415/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash/HashFunction.java
+END
+MinHashMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1196583/mahout/trunk/core/src/main/java/org/apache/mahout/clustering/minhash/MinHashMapper.java
+END

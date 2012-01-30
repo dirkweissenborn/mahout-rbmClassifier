@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split
+END
+IgSplit.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split/IgSplit.java
+END
+DefaultIgSplit.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split/DefaultIgSplit.java
+END
+Split.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1213034/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split/Split.java
+END
+RegressionSplit.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1225091/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split/RegressionSplit.java
+END
+OptIgSplit.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1213261/mahout/trunk/core/src/main/java/org/apache/mahout/classifier/df/split/OptIgSplit.java
+END

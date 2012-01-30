@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email
+END
+EmailUtility.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1206335/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/EmailUtility.java
+END
+MailToRecMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/MailToRecMapper.java
+END
+MsgIdToDictionaryMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/MsgIdToDictionaryMapper.java
+END
+MailToRecReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/MailToRecReducer.java
+END
+MailToPrefsDriver.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1205271/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/MailToPrefsDriver.java
+END
+MailToDictionaryReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1183642/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/MailToDictionaryReducer.java
+END
+FromEmailToDictionaryMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1210428/mahout/trunk/examples/src/main/java/org/apache/mahout/cf/taste/example/email/FromEmailToDictionaryMapper.java
+END

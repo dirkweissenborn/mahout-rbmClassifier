@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1183642/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc
+END
+PostgreSQLJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1136346/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/PostgreSQLJDBCDataModel.java
+END
+SQL92BooleanPrefJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1136346/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/SQL92BooleanPrefJDBCDataModel.java
+END
+ConnectionPoolDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1140141/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/ConnectionPoolDataSource.java
+END
+SQL92JDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1136346/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/SQL92JDBCDataModel.java
+END
+GenericJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1134462/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/GenericJDBCDataModel.java
+END
+PostgreSQLBooleanPrefJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1136346/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/PostgreSQLBooleanPrefJDBCDataModel.java
+END
+MySQLBooleanPrefJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/MySQLBooleanPrefJDBCDataModel.java
+END
+AbstractBooleanPrefJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/AbstractBooleanPrefJDBCDataModel.java
+END
+AbstractJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1183642/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/AbstractJDBCDataModel.java
+END
+MySQLJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1131341/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/MySQLJDBCDataModel.java
+END
+ReloadFromJDBCDataModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1147583/mahout/trunk/integration/src/main/java/org/apache/mahout/cf/taste/impl/model/jdbc/ReloadFromJDBCDataModel.java
+END
