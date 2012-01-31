@@ -225,7 +225,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 					    		logger.info(i+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
 					    }
-				    	logger.info(((double)b)/batches.length*100+"% of training is done!");
+				    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
 
 					    if(monitor) {
 							double error = rbmError(batches[b], i);
@@ -251,7 +251,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 				    }
-			    	logger.info(((double)b)/batches.length*100+"% of training is done!");
+			    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
 			    	
 				    if(monitor) {
 						double error = rbmError(batches[b], rbmNrtoTrain);
@@ -291,7 +291,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 			    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 			    }
-		    	logger.info(((double)b)/batches.length*100+"% of training is done!");
+		    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
 
 			    if(monitor) {
 		    		double error = classifierError(batches[0]);
