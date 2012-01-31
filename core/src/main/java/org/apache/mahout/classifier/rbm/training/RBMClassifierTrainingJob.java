@@ -240,7 +240,6 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    			//tempLearningrate = learningrate;
 				    for (int j = 0; j < iterations; j++) {
 				    		tempLearningrate -= learningrate/(iterations*batches.length+iterations);
-				    		logger.info("learningrate: "+tempLearningrate);
 				    	if(local) {
 				    		if(!trainGreedySeq(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1; 
