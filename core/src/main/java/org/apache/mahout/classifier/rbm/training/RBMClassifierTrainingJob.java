@@ -13,7 +13,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.logging.Logger;
 import java.util.prefs.BackingStoreException;
 
 import org.apache.commons.cli2.builder.DefaultOptionBuilder;
@@ -31,8 +30,6 @@ import org.apache.mahout.classifier.rbm.RBMClassifier;
 import org.apache.mahout.classifier.rbm.model.LabeledSimpleRBM;
 import org.apache.mahout.classifier.rbm.model.SimpleRBM;
 import org.apache.mahout.classifier.rbm.network.DeepBoltzmannMachine;
-import org.apache.mahout.classifier.rbm.training.DBMBackPropTrainingMapper.BATCHES;
-import org.apache.mahout.classifier.rbm.training.RBMGreedyPreTrainingMapper.BATCH;
 import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.Pair;
@@ -47,11 +44,13 @@ import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.MatrixWritable;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RBMClassifierTrainingJob extends AbstractJob{
 
 	public static final String WEIGHT_UPDATES = "weightupdates";
-	private final Logger logger = Logger.getLogger(RBMClassifierTrainingJob.class.getName());
+	private final Logger logger = LoggerFactory.getLogger(RBMClassifierTrainingJob.class);
 	
 	Matrix[] lastUpdate;
 	RBMClassifier rbmCl=null;
@@ -68,6 +67,15 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     int rbmNrtoTrain;
 	
 	public static void main(String[] args) throws Exception {
+		if(args==null|| args.length==0)
+			args = new String[]{
+		          "--input", "$HOME/mnist/chunks440",
+		          "--output", "$HOME/mnist/model",
+		          "--structure", "784,500,1000",
+		          "--labelcount", "10"	,
+		          "--maxIter", "10",
+		          "--rbmnr","0",
+		          "--monitor","-ow","-nf","-nb"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
 	
