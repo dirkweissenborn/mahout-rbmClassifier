@@ -222,7 +222,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					    	else
 							    if(!trainGreedyMR(i, batches[b], j, tempLearningrate))
 							    	return -1;
-					    	if((j+1)%(iterations/5)==0)
+					    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 					    		logger.info(i+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
 					    }
 				    	logger.info(((double)b)/batches.length*100+"% of training is done!");
@@ -248,7 +248,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				    	else
 						    if(!trainGreedyMR(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1;				
-				    	if((j+1)%(iterations/5)==0)
+				    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 				    }
 			    	logger.info(((double)b)/batches.length*100+"% of training is done!");
@@ -288,7 +288,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    	else
 			    		if(!fintuneMR(batches[b], j))
 			    			return -1;		
-			    	if((j+1)%(iterations/5)==0)
+			    	if((iterations>4)&&(j+1)%(iterations/5)==0)
 			    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 			    }
 		    	logger.info(((double)b)/batches.length*100+"% of training is done!");
