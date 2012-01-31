@@ -1,9 +1,6 @@
 package org.apache.mahout.classifier.rbm.model;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-import net.sf.cglib.asm.Type;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -12,7 +9,6 @@ import org.apache.hadoop.fs.Path;
 import org.apache.mahout.classifier.rbm.layer.Layer;
 import org.apache.mahout.common.distance.DistanceMeasure;
 import org.apache.mahout.common.distance.EuclideanDistanceMeasure;
-import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.Vector;
 
 import com.google.common.io.Closeables;

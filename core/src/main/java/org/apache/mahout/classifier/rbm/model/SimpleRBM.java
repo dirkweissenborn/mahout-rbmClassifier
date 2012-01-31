@@ -1,7 +1,6 @@
 package org.apache.mahout.classifier.rbm.model;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.Random;
 
 import org.apache.hadoop.conf.Configuration;
@@ -9,18 +8,13 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.mahout.classifier.naivebayes.NaiveBayesModel;
 import org.apache.mahout.classifier.rbm.layer.Layer;
 import org.apache.mahout.common.ClassUtils;
-import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.RandomUtils;
 import org.apache.mahout.math.DenseMatrix;
-import org.apache.mahout.math.DenseVector;
 import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.MatrixWritable;
-import org.apache.mahout.math.SparseMatrix;
 import org.apache.mahout.math.Vector;
-import org.apache.mahout.math.VectorWritable;
 
 import com.google.common.io.Closeables;
 
