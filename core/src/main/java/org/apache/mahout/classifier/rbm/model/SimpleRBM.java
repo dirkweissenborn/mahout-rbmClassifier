@@ -134,4 +134,11 @@ public class SimpleRBM extends RBMModel {
 	public void setWeightMatrix(Matrix weightMatrix) {
 		this.weightMatrix = weightMatrix;
 	}
+	
+	@Override
+	public RBMModel clone() {
+		SimpleRBM rbm = new SimpleRBM(visibleLayer.clone(), hiddenLayer.clone());
+		rbm.weightMatrix = weightMatrix.clone();
+		return rbm;
+	}
 }

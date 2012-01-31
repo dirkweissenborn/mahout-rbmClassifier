@@ -88,4 +88,5 @@ public abstract class RBMModel {
 		DistanceMeasure dm = new EuclideanDistanceMeasure();		
 		return dm.distance(input, visibleLayer.getExcitations());
 	}
+	public abstract RBMModel clone();
 }

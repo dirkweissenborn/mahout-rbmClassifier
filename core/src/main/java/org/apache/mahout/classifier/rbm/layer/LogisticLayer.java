@@ -18,4 +18,9 @@ public class LogisticLayer extends AbstractLayer {
 		double exp = Math.exp(inputs.get(i)+biases.get(i));
 		return exp/((exp+1)*(exp+1));
 	}
+	
+	@Override
+	public LogisticLayer clone() {
+		return new LogisticLayer(activations.size());
+	}
 }

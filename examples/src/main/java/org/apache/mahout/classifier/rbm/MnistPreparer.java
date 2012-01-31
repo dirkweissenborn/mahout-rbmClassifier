@@ -4,14 +4,7 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.ObjectInputStream.GetField;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -19,23 +12,19 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.SequenceFile.Writer;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.log4j.Logger;
-import org.apache.mahout.classifier.rbm.training.RBMClassifierTrainingJob;
 import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.HadoopUtil;
-import org.apache.mahout.common.commandline.DefaultOptionCreator;
 import org.apache.mahout.math.DenseVector;
-import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
-import org.apache.mahout.utils.vectors.io.SequenceFileVectorWriter;
 
 public class MnistPreparer extends AbstractJob{
 
 	public static void main(String[] args) throws Exception {
 		if(args == null || args.length==0)
-			args = new String[]{"--"+DefaultOptionCreator.INPUT_OPTION,"/home/dirk/mnist",
+			args = new String[]{"--imagepath","/home/dirk/mnist/train-images-idx3-ubyte",
+							    "--labelpath","/home/dirk/mnist/train-labels-idx1-ubyte",
 						  		"--output","/home/dirk/mnist/out",
 						  		"-cnr","440"};
 		
@@ -49,28 +38,29 @@ public class MnistPreparer extends AbstractJob{
 	 */
 	@Override
 	public int run(String[] args) throws Exception {		
-		addInputOption();
 		addOutputOption();
 		//chunknumber 600 gives nullpointer exception???
 		addOption("chunknumber","cnr","number of chunks to be created",true);
-		
+		addOption("labelpath","l","path to the label file",true);
+		addOption("imagepath","i","path to image file",true);
+
 		Map<String, String> parsedArgs = parseArguments(args);
 	    if (parsedArgs == null) {
 	      return -1;
 	    }
 	    
-	    Path input = getInputPath();  
+	 
 	    Path output = getOutputPath(); 
 	    
-	    FileSystem fileSystem = input.getFileSystem(getConf());	    
+	    FileSystem fileSystem = output.getFileSystem(getConf());	    
 	    HadoopUtil.delete(getConf(), getOutputPath());
 	    
 	    fileSystem.mkdirs(output);
 	    
 	    DataInputStream dataReader = new DataInputStream(
-	    		new FileInputStream(new File(new Path(input,"train-images-idx3-ubyte").toUri().getPath())));
+	    		new FileInputStream(new File(getOption("imagepath"))));
 	    DataInputStream labelReader = new DataInputStream(
-	    		new FileInputStream(new File(new Path(input,"train-labels-idx1-ubyte").toUri().getPath())));
+	    		new FileInputStream(new File(getOption("labelpath"))));
 	    
     
     	labelReader.skipBytes(8);

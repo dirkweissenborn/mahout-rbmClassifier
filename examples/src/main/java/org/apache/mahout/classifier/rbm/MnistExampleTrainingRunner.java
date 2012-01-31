@@ -17,13 +17,13 @@ public class MnistExampleTrainingRunner {
 		RBMClassifierTrainingJob job = new RBMClassifierTrainingJob();
 		job.setConf(new Configuration());
 		String[] args1 = {
-		          "--input", "/home/dirk/mnist/out",
+		          "--input", "/home/dirk/mnist/2chunks",
 		          "--output", "/home/dirk/mnist/model",
 		          "--structure", "784,500,1000",
 		          "--labelcount", "10"	,
 		          "--maxIter", "10",
-		          "--monitor","-ow","-seq","-nf","-nb",
-		          "-nr","0"};
+		          "--rbmnr","0",
+		          "--monitor","-ow","-nf","-nb"};
 		
 		job.run(args1);
 	}

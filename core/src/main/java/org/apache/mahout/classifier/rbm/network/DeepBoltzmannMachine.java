@@ -26,7 +26,7 @@ import org.apache.mahout.math.MatrixWritable;
 
 import com.google.common.io.Closeables;
 
-public class DeepBoltzmannMachine implements DeepBeliefNetwork{
+public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 	List<RBMModel> rbms;
 	
 	public DeepBoltzmannMachine(RBMModel lowestRBM) {
@@ -175,4 +175,13 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork{
 			getRBM(l-1).updateHiddenLayer();
 	}
 
+	public DeepBoltzmannMachine clone(){
+		DeepBoltzmannMachine dbm = new DeepBoltzmannMachine(rbms.get(0).clone());
+		for (int i = 1; i < rbms.size(); i++) {
+			RBMModel clonedRbm = getRBM(i).clone();
+			clonedRbm.setVisibleLayer(dbm.getRBM(i-1).getHiddenLayer());
+			dbm.stackRBM(clonedRbm);
+		}
+		return dbm;
+	}
 }

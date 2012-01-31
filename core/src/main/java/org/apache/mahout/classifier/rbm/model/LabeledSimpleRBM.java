@@ -138,5 +138,13 @@ public class LabeledSimpleRBM extends SimpleRBM {
 		visibleLayer.updateNeurons();
 		softmaxLayer.updateNeurons();
 	}
+	
+	@Override
+	public LabeledSimpleRBM clone() {
+		LabeledSimpleRBM rbm = new LabeledSimpleRBM(visibleLayer.clone(), hiddenLayer.clone(), softmaxLayer.clone());
+		rbm.weightMatrix = weightMatrix.clone();
+		rbm.weightLabelMatrix = weightLabelMatrix.clone();
+		return rbm;
+	}
 
 }

@@ -14,7 +14,7 @@ import org.apache.mahout.classifier.rbm.network.DBMStateIterator;
 import org.apache.mahout.classifier.rbm.network.DeepBoltzmannMachine;
 import org.apache.mahout.math.Vector;
 
-public class RBMClassifier extends AbstractVectorClassifier{
+public class RBMClassifier extends AbstractVectorClassifier implements Cloneable{
 
 	private DeepBoltzmannMachine dbm;
 	
@@ -98,6 +98,13 @@ public class RBMClassifier extends AbstractVectorClassifier{
 	
 	public Vector getCurrentScores() {
 		return ((LabeledSimpleRBM)dbm.getRBM(dbm.getRbmCount()-1)).getSoftmaxLayer().getExcitations();
+	}
+	
+	@Override
+	protected RBMClassifier clone() {
+		RBMClassifier rbmCl = new RBMClassifier(0, new int[]{});
+		rbmCl.dbm = dbm.clone();
+		return rbmCl;
 	}
 
 }

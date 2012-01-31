@@ -56,5 +56,10 @@ public class SoftmaxLayer extends AbstractLayer {
 		double exp = Math.exp(inputs.get(i)+biases.get(i));
 		return (partitionSum * exp+exp*exp)/(partitionSum*partitionSum);
 	}
+	
+	@Override
+	public SoftmaxLayer clone() {
+		return new SoftmaxLayer(activations.size());
+	}
 
 }

@@ -122,4 +122,7 @@ public abstract class AbstractLayer implements Layer {
 	public void setBiases(Vector biases) {
 		this.biases = biases;
 	}
+	
+	@Override
+	public abstract Layer clone();
 }

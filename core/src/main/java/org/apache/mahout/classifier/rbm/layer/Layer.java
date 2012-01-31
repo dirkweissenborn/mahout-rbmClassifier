@@ -29,4 +29,5 @@ public interface Layer {
 	
 	void computeNeuronErrors(Vector output);
 	void computeNeuronErrors(Layer nextLayer, Matrix weightMatrix);
+	public Layer clone();
 }

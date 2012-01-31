@@ -21,6 +21,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -109,5 +111,11 @@ public final class ConnectionPoolDataSource implements DataSource {
       return connection;
     }
   }
+
+@Override
+public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+	// TODO Auto-generated method stub
+	return null;
+}
   
 }

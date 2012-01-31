@@ -32,5 +32,10 @@ public class GaussianLayer extends AbstractLayer {
 				(Math.sqrt(2*Math.PI)*Math.pow(standardDeviation,3));
 	}
 	
+	@Override
+	public GaussianLayer clone() {
+		return new GaussianLayer(activations.size(),standardDeviation,mean);
+	}
+	
 	
 }

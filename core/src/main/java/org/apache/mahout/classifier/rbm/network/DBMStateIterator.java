@@ -10,7 +10,7 @@ public class DBMStateIterator{
 		int counter = 0;
 		int counter2 = 0;
 		Vector activations = layer.getActivations().clone();
-		//TODO experimental counter2<leastStableIterations*4; how many iterations should the classifier need
+		//TODO experimental counter2<leastStableIterations*5; how many iterations should the classifier need
 		while(counter<leastStableIterations&&counter2<leastStableIterations*5) {			
 			for(int i = 1; i<dbm.getLayerCount();i++)
 				dbm.exciteLayer(i);
