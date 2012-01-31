@@ -50,7 +50,7 @@ import org.slf4j.LoggerFactory;
 public class RBMClassifierTrainingJob extends AbstractJob{
 
 	public static final String WEIGHT_UPDATES = "weightupdates";
-	private final Logger logger = LoggerFactory.getLogger(RBMClassifierTrainingJob.class);
+	private static final Logger logger = LoggerFactory.getLogger(RBMClassifierTrainingJob.class);
 	
 	Matrix[] lastUpdate;
 	RBMClassifier rbmCl=null;
