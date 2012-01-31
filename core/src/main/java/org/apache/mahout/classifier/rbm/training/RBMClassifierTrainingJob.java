@@ -211,46 +211,49 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			   //train all rbms
 			    for(int i=0; i<rbmCl.getDbm().getRbmCount(); i++) {
 			    	tempLearningrate = learningrate;
-					for(Path batch : batches) {						
+					for(int b=0; b<batches.length;b++) {						
 					    for (int j = 0; j < iterations; j++) {
 					    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 					    	if(local) {
-					    		if(!trainGreedySeq(i, batch, j, tempLearningrate))
+					    		if(!trainGreedySeq(i, batches[b], j, tempLearningrate))
 					    			return -1; 
 					    	}
 					    	else
-							    if(!trainGreedyMR(i, batch, j, tempLearningrate))
+							    if(!trainGreedyMR(i, batches[b], j, tempLearningrate))
 							    	return -1;
 					    	if(j%(iterations/10)==0)
-					    		logger.info(i+"-RBM: "+Math.round(((double)j)/iterations*100.0)+"% on batch "+batch.getName()+" done!");
+					    		logger.info(i+"-RBM: "+Math.round(((double)j)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 					    }
+				    	logger.info(((double)b)/batches.length*100+"% of training is done!");
+
 					    if(monitor) {
-							double error = rbmError(batch, i);
-							logger.info(i+"-RBM's average reconstruction error on batch "+batch.getName()+
+							double error = rbmError(batches[b], i);
+							logger.info(i+"-RBM's average reconstruction error on batch "+batches[b].getName()+
 										" after (another)"+iterations+" iteration(s) of pretraining: "+error);
 						}
 					}
 			    }
 	    	else 
 	    		//train just wanted rbm
-	    		for(Path batch : batches) {
+	    		for(int b=0; b<batches.length;b++) {
 	    			//tempLearningrate = learningrate;
 				    for (int j = 0; j < iterations; j++) {
 				    		tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 				    	if(local) {
-				    		if(!trainGreedySeq(rbmNrtoTrain, batch, j,tempLearningrate))
+				    		if(!trainGreedySeq(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1; 
 				    	}
 				    	else
-						    if(!trainGreedyMR(rbmNrtoTrain, batch, j,tempLearningrate))
+						    if(!trainGreedyMR(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1;				
 				    	if(j%(iterations/10)==0)
-				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batch.getName()+" done!");
+				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 				    }
+			    	logger.info(((double)b)/batches.length*100+"% of training is done!");
 				    if(monitor) {
-						double error = rbmError(batch, rbmNrtoTrain);
-						logger.info(rbmNrtoTrain+"-RBM's average reconstruction error on batch "+batch.getName()+
-									" after (another)"+iterations+" iteration(s) of pretraining: "+error);
+						double error = rbmError(batches[b], rbmNrtoTrain);
+						logger.info(rbmNrtoTrain+"-RBM's average reconstruction error on batch "+batches[b].getName()+
+									" after (another) "+iterations+" iteration(s) of pretraining: "+error);
 					}
 	    		}
 		    
@@ -273,18 +276,20 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	if(local)
 	    		multiLayerDbm = rbmCl.initializeMultiLayerNN();
 		    //finetuning job
-		    for(Path batch : batches) {
+		    for(int b=0; b<batches.length;b++) {
 			    for (int j = 0; j < iterations; j++) {
 			    	if(local) {
-			    		if(!finetuneSeq(batch, j, multiLayerDbm))
+			    		if(!finetuneSeq(batches[b], j, multiLayerDbm))
 			    			return -1;
 			    	}
 			    	else
-			    		if(!fintuneMR(batch, j))
+			    		if(!fintuneMR(batches[b], j))
 			    			return -1;
-			    	logger.info("iteration "+(j+1)+" on batch "+batch.getName()+" done");
+			    	logger.info("iteration "+(j+1)+" on batch "+batches[b].getName()+" done");
 			    		
 			    }
+		    	logger.info(((double)b)/batches.length*100+"% of training is done!");
+
 			    if(monitor) {
 		    		double error = classifierError(batches[0]);
 					logger.info("Classifiers average error on batch "+batches[0].getName()+
