@@ -1,3 +1,19 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.mahout.classifier.rbm.model;
 
 import java.io.IOException;
@@ -18,10 +34,25 @@ import org.apache.mahout.math.Vector;
 
 import com.google.common.io.Closeables;
 
+/**
+ * The Class LabeledSimpleRBM which is a simple rbm, but also has a softmax layer in addition to
+ * the visible layer. This softmax layer can be seen as labels.
+ */
 public class LabeledSimpleRBM extends SimpleRBM {
+	
+	/** The softmax layer. */
 	SoftmaxLayer softmaxLayer;
+	
+	/** The weight label matrix. */
 	protected Matrix weightLabelMatrix; 
 	
+	/**
+	 * Instantiates a new labeled simple rbm.
+	 *
+	 * @param visibleLayer the visible layer
+	 * @param hiddenLayer the hidden layer
+	 * @param labelLayer the label layer
+	 */
 	public LabeledSimpleRBM(Layer visibleLayer, Layer hiddenLayer, SoftmaxLayer labelLayer) {
 		super(visibleLayer, hiddenLayer);
 		this.softmaxLayer = labelLayer;
@@ -39,10 +70,18 @@ public class LabeledSimpleRBM extends SimpleRBM {
 		}
 	}
 
+	/**
+	 * Gets the softmax layer.
+	 *
+	 * @return the softmax layer
+	 */
 	public SoftmaxLayer getSoftmaxLayer() {
 		return softmaxLayer;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.model.SimpleRBM#exciteHiddenLayer(double, boolean)
+	 */
 	@Override
 	public void exciteHiddenLayer(double inputFactor, boolean addInput) {		
 		Matrix activations = visibleLayer.getTransposedActivations();
@@ -59,6 +98,9 @@ public class LabeledSimpleRBM extends SimpleRBM {
 		hiddenLayer.exciteNeurons();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.model.SimpleRBM#exciteVisibleLayer(double, boolean)
+	 */
 	@Override
 	public void exciteVisibleLayer(double inputFactor, boolean addInput) {
 		super.exciteVisibleLayer(inputFactor, addInput);
@@ -71,14 +113,27 @@ public class LabeledSimpleRBM extends SimpleRBM {
 		softmaxLayer.exciteNeurons();
 	}
 	
+	/**
+	 * Sets the weight label matrix.
+	 *
+	 * @param weightLabelMatrix the new weight label matrix
+	 */
 	public void setWeightLabelMatrix(Matrix weightLabelMatrix) {
 		this.weightLabelMatrix = weightLabelMatrix;
 	}
 	
+	/**
+	 * Gets the weight label matrix.
+	 *
+	 * @return the weight label matrix
+	 */
 	public Matrix getWeightLabelMatrix() {
 		return weightLabelMatrix;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.model.SimpleRBM#serialize(org.apache.hadoop.fs.Path, org.apache.hadoop.conf.Configuration)
+	 */
 	@Override
 	public void serialize(Path output, Configuration conf) throws IOException {
 		FileSystem fs = output.getFileSystem(conf);		
@@ -96,6 +151,14 @@ public class LabeledSimpleRBM extends SimpleRBM {
 	    }		
 	}
 	
+	/**
+	 * Materialize.
+	 *
+	 * @param output the output path
+	 * @param conf the hadoop config
+	 * @return the labeled rbm
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static LabeledSimpleRBM materialize(Path output,Configuration conf) throws IOException {
 	    FileSystem fs = output.getFileSystem(conf);
 	    Matrix weightMatrix;
@@ -126,16 +189,27 @@ public class LabeledSimpleRBM extends SimpleRBM {
 	    return rbm;
 	  }
 	
+	/**
+	 * Gets the label.
+	 *
+	 * @return the label
+	 */
 	public Integer getLabel() {
 		return softmaxLayer.getActiveNeuron();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.model.RBMModel#updateVisibleLayer()
+	 */
 	@Override
 	public void updateVisibleLayer() {
 		visibleLayer.updateNeurons();
 		softmaxLayer.updateNeurons();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.model.SimpleRBM#clone()
+	 */
 	@Override
 	public LabeledSimpleRBM clone() {
 		LabeledSimpleRBM rbm = new LabeledSimpleRBM(visibleLayer.clone(), hiddenLayer.clone(), softmaxLayer.clone());

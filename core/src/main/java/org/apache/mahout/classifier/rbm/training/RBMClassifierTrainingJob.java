@@ -69,8 +69,8 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
-		          "--input", "$HOME/mnist/chunks440",
-		          "--output", "$HOME/mnist/model",
+		          "--input", "/home/dirk/mnist/440chunks",
+		          "--output", "/home/dirk/mnist/model",
 		          "--structure", "784,500,1000",
 		          "--labelcount", "10"	,
 		          "--maxIter", "10",
@@ -205,7 +205,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	
 	    	if(!local)
 	    		rbmCl.serialize(output, getConf());
-	    	
+	    		
 	    	double tempLearningrate = learningrate;
 	    	if(rbmNrtoTrain<0)
 			   //train all rbms
@@ -222,7 +222,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					    	else
 							    if(!trainGreedyMR(i, batches[b], j, tempLearningrate))
 							    	return -1;
-					    	if((iterations>4)&&(j+1)%(iterations/5)==0)
+					    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
 					    		logger.info(i+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
 					    }
 				    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
@@ -247,7 +247,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				    	else
 						    if(!trainGreedyMR(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1;				
-				    	if((iterations>4)&&(j+1)%(iterations/5)==0)
+				    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
 				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 				    }
 			    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
@@ -287,7 +287,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    	else
 			    		if(!fintuneMR(batches[b], j))
 			    			return -1;		
-			    	if((iterations>4)&&(j+1)%(iterations/5)==0)
+			    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
 			    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
 			    }
 		    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
@@ -408,14 +408,21 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		
 	}
 	
+	private ExecutorService executor;
+	List<greedyTrainingThread> tasks;
+	
 	private boolean trainGreedySeq(int rbmNr, Path batch, int iteration, double learningrate) throws InterruptedException, ExecutionException {
     	int batchsize = 0;
     	DeepBoltzmannMachine dbm = rbmCl.getDbm();
     	Vector label = new DenseVector(labelcount);
     	Matrix updates = null;
-    	ExecutorService executor = Executors.newFixedThreadPool(20);
-    	List<greedyTrainingThread> tasks = new ArrayList<RBMClassifierTrainingJob.greedyTrainingThread>();
- 
+    	int threadCount =20;
+    	if(executor==null)
+    		executor = Executors.newFixedThreadPool(threadCount);
+    	
+    	if(tasks==null)
+    		tasks = new ArrayList<RBMClassifierTrainingJob.greedyTrainingThread>();
+    	
 		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
 			CDTrainer trainer = new CDTrainer(learningrate, nrGibbsSampling);
 			label.assign(0);
@@ -443,14 +450,16 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 						trainer.calculateWeightUpdates((SimpleRBM)dbm.getRBM(rbmNr), false, rbmNr==0));
 			}*/
 			
-			if(batchsize<20)
+			if(tasks.size()<threadCount)				
 				tasks.add(new greedyTrainingThread(dbm.clone(), label.clone(), record.getSecond().get(), trainer, rbmNr));
 			else {
-				tasks.get(batchsize%20).input = record.getSecond().get();
-				tasks.get(batchsize%20).label = label.clone();
+				tasks.get(batchsize%threadCount).input = record.getSecond().get();
+				tasks.get(batchsize%threadCount).label = label.clone();
+				if(batchsize<threadCount)
+					tasks.get(batchsize%threadCount).dbm = dbm.clone();
 			}
 			
-			if(batchsize%20==19) {
+			if(batchsize%threadCount==threadCount-1) {
 				List<Future<Matrix>> futureUpdates = executor.invokeAll(tasks);
 				for (int i = 0; i < futureUpdates.size(); i++) {
 					if(updates==null)
