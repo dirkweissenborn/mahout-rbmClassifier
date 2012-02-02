@@ -73,9 +73,9 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		          "--output", "/home/dirk/mnist/model",
 		          "--structure", "784,500,1000",
 		          "--labelcount", "10"	,
-		          "--maxIter", "10",
-		          "--rbmnr","0",
-		          "--monitor","-ow","-nf","-nb"};
+		          "--maxIter", "1",
+		          "--rbmnr","1",
+		          "--monitor","-nf","-nb"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
 	
@@ -153,9 +153,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     	boolean initialize = hasOption(DefaultOptionCreator.OVERWRITE_OPTION)||!fs.exists(output)||fs.listStatus(output).length<=0;
 	    
     	if (initialize) {
-	      HadoopUtil.delete(getConf(), getOutputPath());
-	      
-	      String structure = getOption("structure");	      
+   	      String structure = getOption("structure");	      
 	      if(structure==null||structure.isEmpty())
 	    	  return -1;
 	      
@@ -170,8 +168,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	      }
 	      
 	      rbmCl = new RBMClassifier(labelcount, actualLayerSizes);
+	      logger.info("New model initialized!");
 	    } else {
 	    	rbmCl = RBMClassifier.materialize(output, getConf());
+	    	logger.info("Model found and materialized!");
 	    }
 	    
 	    HadoopUtil.setSerializations(getConf());	    
@@ -195,45 +195,56 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    }
 	    
 	    //greedy pre training with gradually decreasing learningrates
-	    if(greedy) {
-	    	//double weights if dbm was materialized, because it was halved after greedy pretraining
-	    	if(!initialize)
-		    	for(int i=1; i<rbmCl.getDbm().getRbmCount()-1; i++) {
-			    	SimpleRBM rbm = (SimpleRBM)rbmCl.getDbm().getRBM(i);
-			    	rbm.setWeightMatrix(rbm.getWeightMatrix().times(2));
-			    }
-	    	
+	    if(greedy) {	    	
 	    	if(!local)
 	    		rbmCl.serialize(output, getConf());
 	    		
 	    	double tempLearningrate = learningrate;
 	    	if(rbmNrtoTrain<0)
 			   //train all rbms
-			    for(int i=0; i<rbmCl.getDbm().getRbmCount(); i++) {
+			    for(int rbmNr=0; rbmNr<rbmCl.getDbm().getRbmCount(); rbmNr++) {
 			    	tempLearningrate = learningrate;
-					for(int b=0; b<batches.length;b++) {			
+			    	
+			    	//double weights if dbm was materialized, because it was halved after greedy pretraining
+			    	if(!initialize&&rbmNrtoTrain>0&&rbmNrtoTrain<rbmCl.getDbm().getRbmCount()-1) {
+			    		((SimpleRBM)rbmCl.getDbm().getRBM(rbmNr)).setWeightMatrix(
+			    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNr)).getWeightMatrix().times(2));
+			    	}
+					
+			    	for(int b=0; b<batches.length;b++) {			
 						logger.info("Greedy training of batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
 					    for (int j = 0; j < iterations; j++) {
 					    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 					    	if(local) {
-					    		if(!trainGreedySeq(i, batches[b], j, tempLearningrate))
+					    		if(!trainGreedySeq(rbmNr, batches[b], j, tempLearningrate))
 					    			return -1; 
 					    	}
 					    	else
-							    if(!trainGreedyMR(i, batches[b], j, tempLearningrate))
+							    if(!trainGreedyMR(rbmNr, batches[b], j, tempLearningrate))
 							    	return -1;
 					    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
-					    		logger.info(i+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
+					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
 					    }
 				    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
 
 					    if(monitor) {
-							double error = rbmError(batches[b], i);
+							double error = rbmError(batches[b], rbmNr);
 							logger.info("Average reconstruction error on batch: "+error);
 						}
-					}
+					}    	
+			    	
+			    	//weight normalization to avoid double counting
+			    	if(rbmNr>0&&rbmNr<rbmCl.getDbm().getRbmCount()-1) {
+			    		((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).setWeightMatrix(
+			    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).getWeightMatrix().times(0.5));
+			    	}
 			    }
-	    	else 
+	    	else {
+	    		//double weights if dbm was materialized, because it was halved after greedy pretraining
+		    	if(!initialize&&rbmNrtoTrain>0&&rbmNrtoTrain<rbmCl.getDbm().getRbmCount()-1) {
+		    		((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).setWeightMatrix(
+		    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).getWeightMatrix().times(2));
+		    	}
 	    		//train just wanted rbm
 	    		for(int b=0; b<batches.length;b++) {
 					logger.info("Greedy training of batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
@@ -257,12 +268,14 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 						logger.info("Average reconstruction error on batch: "+error);
 					}
 	    		}
-		    
-		    //weight normalization to avoid double counting
-		    for(int i=1; i<rbmCl.getDbm().getRbmCount()-1; i++) {
-		    	SimpleRBM rbm = (SimpleRBM)rbmCl.getDbm().getRBM(i);
-		    	rbm.setWeightMatrix(rbm.getWeightMatrix().times(0.5));
-		    }
+	    		
+			    //weight normalization to avoid double counting
+		    	if(rbmNrtoTrain>0&&rbmNrtoTrain<rbmCl.getDbm().getRbmCount()-1) {
+		    		((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).setWeightMatrix(
+		    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).getWeightMatrix().times(0.5));
+		    	}
+	    	}
+
 		    rbmCl.serialize(output, getConf());
 		    logger.info("Pretraining done");
 	    }
@@ -392,8 +405,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			
 			dbm.getRBM(0).getVisibleLayer().setActivations(input);
 			for(int i = 0; i<rbmNr; i++){
-				dbm.getRBM(i).exciteHiddenLayer((i==0)? 2:1, false);
-				dbm.getRBM(i).getHiddenLayer().updateNeurons();
+				//double the bottom up connection for initialization
+				dbm.getRBM(i).exciteHiddenLayer(2, false);
+				if(i==rbmNr-1)
+					//probabilities as activation for the data the rbm should train on
+					dbm.getRBM(i).getHiddenLayer().setProbabilitiesAsActivation();
+				else
+					dbm.getRBM(i).getHiddenLayer().updateNeurons();
 			}
 						
 			if(rbmNr==dbm.getRbmCount()-1) {
@@ -431,7 +449,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			dbm.getRBM(0).getVisibleLayer().setActivations(record.getSecond().get());
 			for(int i = 0; i<rbmNr; i++){
 				dbm.getRBM(i).exciteHiddenLayer((i==0)? 2:1, false);
-				dbm.getRBM(i).getHiddenLayer().updateNeurons();
+				if(i==rbmNr-1)
+					dbm.getRBM(i).getHiddenLayer().setProbabilitiesAsActivation();
+				else
+					dbm.getRBM(i).getHiddenLayer().updateNeurons();
 			}
 						
 			if(rbmNr==dbm.getRbmCount()-1) {
@@ -541,9 +562,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		
 		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
 			dbm.getRBM(0).getVisibleLayer().setActivations(record.getSecond().get());
-			for(int i = 0; i<rbmNr; i++){				
-				dbm.getRBM(i).exciteHiddenLayer((i==0)? 2:1, false);
-				dbm.getRBM(i).getHiddenLayer().updateNeurons();
+			for(int i = 0; i<rbmNr; i++){		
+				//double the bottom up connection for initialization
+				dbm.getRBM(i).exciteHiddenLayer(2, false);
+				if(i==rbmNr-1)
+					dbm.getRBM(i).getHiddenLayer().setProbabilitiesAsActivation();
+				else
+					dbm.getRBM(i).getHiddenLayer().updateNeurons();
 			}
 			if(dbm.getRBM(rbmNr) instanceof LabeledSimpleRBM) {
 				label.assign(0);

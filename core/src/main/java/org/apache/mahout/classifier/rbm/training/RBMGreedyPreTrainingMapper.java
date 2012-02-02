@@ -44,8 +44,13 @@ public class RBMGreedyPreTrainingMapper extends Mapper<IntWritable, VectorWritab
 		
 		dbm.getRBM(0).getVisibleLayer().setActivations(value.get());
 		for(int i = 0; i<nr; i++){
-			dbm.getRBM(i).exciteHiddenLayer((i==0)? 2:1, false);
-			dbm.getRBM(i).getHiddenLayer().updateNeurons();
+			//double the bottom up connection for initialization
+			dbm.getRBM(i).exciteHiddenLayer(2, false);
+			if(i==nr-1)
+				//probabilities as activation for the data the rbm should train on
+				dbm.getRBM(i).getHiddenLayer().setProbabilitiesAsActivation();
+			else
+				dbm.getRBM(i).getHiddenLayer().updateNeurons();
 		}
 		
 		context.getCounter(BATCH.SIZE).increment(1);
