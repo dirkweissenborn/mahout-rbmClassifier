@@ -29,6 +29,7 @@ import org.apache.mahout.common.iterator.sequencefile.PathFilters;
 import org.apache.mahout.common.iterator.sequencefile.PathType;
 import org.apache.mahout.common.iterator.sequencefile.SequenceFileDirIterable;
 import org.apache.mahout.common.iterator.sequencefile.SequenceFileIterable;
+import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
 import org.slf4j.Logger;
@@ -39,13 +40,17 @@ public class TestRBMClassifierJob extends AbstractJob {
 	private static final Logger log = LoggerFactory.getLogger(TestRBMClassifierJob.class);
 
 	public static void main(String[] args) throws Exception {
+		if(args==null|| args.length==0)
+			args = new String[]{
+		          "--input", "/home/dirk/mnist/440chunks/chunk113",
+		          "--model", "/home/dirk/mnist/30its_220chunks_20h",
+		          "-lc","10"};
 	    ToolRunner.run(new Configuration(), new TestRBMClassifierJob(), args);
 	}
 	
 	@Override
 	public int run(String[] args) throws Exception {
 		addInputOption();
-	    addOutputOption();
 	    addOption("model", "m", "The path to the model built during training", true);
 	    addOption("labelcount", "lc", "total count of labels existent in the training set", true);
 	    addOption(new DefaultOptionBuilder()
@@ -58,13 +63,14 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    if (parsedArgs == null) {
 	      return -1;
 	    }
-	    if (hasOption(DefaultOptionCreator.OVERWRITE_OPTION)) {
-	      HadoopUtil.delete(getConf(), getOutputPath());
-	    }
 	    
 	    int labelcount = Integer.parseInt(getOption("labelcount"));
 
 	    Path model = new Path(parsedArgs.get("--model"));
+	    if(!model.getFileSystem(getConf()).exists(model)) {
+	    	log.error("Model file does not exist!");
+	    	return -1;
+	    }
 	    
 	    List<String> lables= new ArrayList<String>();
 	    for(int i = 0; i<labelcount; i++)
@@ -75,14 +81,14 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    if(hasOption("mapreduce")) {
 		    HadoopUtil.cacheFiles(model, getConf());
 		    //the output key is the expected value, the output value are the scores for all the labels
-		    Job testJob = prepareJob(getInputPath(), getOutputPath(), SequenceFileInputFormat.class, TestRBMClassifierMapper.class,
+		    Job testJob = prepareJob(getInputPath(), getTempPath("testresults"), SequenceFileInputFormat.class, TestRBMClassifierMapper.class,
 		            				 IntWritable.class, VectorWritable.class, SequenceFileOutputFormat.class);
 		    //testJob.getConfiguration().set(LABEL_KEY, parsedArgs.get("--labels"));
 		    testJob.waitForCompletion(true);
 		    
 		    //loop over the results and create the confusion matrix
 		    SequenceFileDirIterable<IntWritable, VectorWritable> dirIterable =
-		        new SequenceFileDirIterable<IntWritable, VectorWritable>(getOutputPath(),
+		        new SequenceFileDirIterable<IntWritable, VectorWritable>(getTempPath("testresults"),
 				                                                          PathType.LIST,
 				                                                          PathFilters.partFilter(),
 				                                                          getConf());
@@ -95,6 +101,9 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    }	    	
 
 	    log.info("RBMClassifier Results: {}", analyzer);
+	    
+	    if(executor!=null)
+	    	executor.shutdownNow();
 	    return 0;
 	  }
 
@@ -115,17 +124,19 @@ public class TestRBMClassifierJob extends AbstractJob {
 		for (Pair<IntWritable, VectorWritable> record : 
 			 new SequenceFileIterable<IntWritable, VectorWritable>(getInputPath(),getConf())) {
 			if(tasks.size()<threadCount)				
-				tasks.add(new RBMClassifierCall(rbmCl.clone(), record.getSecond().get()));
+				tasks.add(new RBMClassifierCall(rbmCl.clone(), record.getSecond().get(), record.getFirst().get()));
 			else {
 				tasks.get(testsize%threadCount).input = record.getSecond().get();
+				tasks.get(testsize%threadCount).label = record.getFirst().get();
 			}
 			
 			if(testsize%threadCount==threadCount-1) {
-				List<Future<Vector>> futureResults = executor.invokeAll(tasks);
+				List<Future<Pair<Integer,Vector>>> futureResults = executor.invokeAll(tasks);
 				for (int i = 0; i < futureResults.size(); i++) {
-					int bestIdx = Integer.MIN_VALUE;
+					  int bestIdx = Integer.MIN_VALUE;
 				      double bestScore = Long.MIN_VALUE;
-				      for (Vector.Element element : futureResults.get(i).get()) {
+				      Pair<Integer, Vector> pair = futureResults.get(i).get();
+				      for (Vector.Element element : pair.getSecond()) {
 				        if (element.get() > bestScore) {
 				          bestScore = element.get();
 				          bestIdx = element.index();
@@ -133,11 +144,32 @@ public class TestRBMClassifierJob extends AbstractJob {
 				      }
 				      if (bestIdx != Integer.MIN_VALUE) {
 				        ClassifierResult classifierResult = new ClassifierResult(String.valueOf(bestIdx), bestScore);
-				        analyzer.addInstance(String.valueOf(record.getFirst().get()), classifierResult);
+				        analyzer.addInstance(String.valueOf(pair.getFirst()), classifierResult);
 				      }
 				}
 			}
+			
+			testsize++;
 		 }
+		
+		if(testsize%20!=0) {
+			List<Future<Pair<Integer,Vector>>> futureResults = executor.invokeAll(tasks.subList(0, (testsize-1) %20));
+			for (int i = 0; i < futureResults.size(); i++) {
+				int bestIdx = Integer.MIN_VALUE;
+			      double bestScore = Long.MIN_VALUE;
+			      Pair<Integer, Vector> pair = futureResults.get(i).get();
+			      for (Vector.Element element : pair.getSecond()) {
+			        if (element.get() > bestScore) {
+			          bestScore = element.get();
+			          bestIdx = element.index();
+			        }
+			      }
+			      if (bestIdx != Integer.MIN_VALUE) {
+			        ClassifierResult classifierResult = new ClassifierResult(String.valueOf(bestIdx), bestScore);
+			        analyzer.addInstance(String.valueOf(pair.getFirst()), classifierResult);
+			      }
+			}
+		}
 	}
 
 	  private void analyzeResults(SequenceFileDirIterable<IntWritable, VectorWritable> dirIterable,
@@ -159,18 +191,20 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    }
 	  }
 	  
-	  class RBMClassifierCall implements Callable<Vector> {
+	  class RBMClassifierCall implements Callable<Pair<Integer,Vector>> {
 		    private RBMClassifier rbmCl;
 		    private Vector input;
+		    private int label;
 			  
-			public RBMClassifierCall(RBMClassifier rbmCl, Vector input) {
+			public RBMClassifierCall(RBMClassifier rbmCl, Vector input, int label) {
 				this.rbmCl = rbmCl;
 				this.input = input;
+				this.label = label;
 			}
 		  
 			@Override
-			public Vector call() throws Exception {
-				return rbmCl.classify(input, 10);
+			public Pair<Integer,Vector> call() throws Exception {
+				return new Pair<Integer, Vector>(label, rbmCl.classify(input, 10));
 			}
 		  
 	  }

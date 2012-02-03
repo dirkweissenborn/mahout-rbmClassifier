@@ -27,6 +27,8 @@ import org.apache.hadoop.fs.Path;
 import org.apache.mahout.classifier.rbm.layer.Layer;
 import org.apache.mahout.classifier.rbm.layer.SoftmaxLayer;
 import org.apache.mahout.common.ClassUtils;
+import org.apache.mahout.common.distance.DistanceMeasure;
+import org.apache.mahout.common.distance.EuclideanDistanceMeasure;
 import org.apache.mahout.math.DenseMatrix;
 import org.apache.mahout.math.Matrix;
 import org.apache.mahout.math.MatrixWritable;
@@ -216,6 +218,18 @@ public class LabeledSimpleRBM extends SimpleRBM {
 		rbm.weightMatrix = weightMatrix.clone();
 		rbm.weightLabelMatrix = weightLabelMatrix.clone();
 		return rbm;
+	}
+	
+	@Override
+	public double getReconstructionError() {
+		Vector input = this.visibleLayer.getActivations().clone();
+		Vector label = this.softmaxLayer.getActivations().clone();
+		exciteHiddenLayer(1,false);
+		updateHiddenLayer();
+		exciteVisibleLayer(1,false);
+		
+		DistanceMeasure dm = new EuclideanDistanceMeasure();		
+		return dm.distance(input, visibleLayer.getExcitations())+dm.distance(label, softmaxLayer.getExcitations());
 	}
 
 }

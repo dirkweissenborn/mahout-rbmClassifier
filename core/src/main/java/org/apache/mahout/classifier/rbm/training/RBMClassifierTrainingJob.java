@@ -69,13 +69,12 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
-		          "--input", "/home/dirk/mnist/440chunks",
-		          "--output", "/home/dirk/mnist/model",
-		          "--structure", "784,500,1000",
+		          "--input", "/home/dirk/mnist/440chunks/chunk113",
+		          "--output", "/home/dirk/mnist/30its_220chunks_20h",
+		          //"--structure", "784,500,1000",
 		          "--labelcount", "10"	,
-		          "--maxIter", "1",
-		          "--rbmnr","1",
-		          "--monitor","-nf","-nb"};
+		          "--maxIter", "10",
+		          "--monitor","-ng","-nb"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
 	
@@ -315,6 +314,9 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    logger.info("RBM finetuning done");
 	    }
 	    
+	    if(executor!=null)
+	    	executor.shutdownNow();
+	    
 		return 0;
 	}
 
@@ -476,8 +478,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			else {
 				tasks.get(batchsize%threadCount).input = record.getSecond().get();
 				tasks.get(batchsize%threadCount).label = label.clone();
-				if(batchsize<threadCount)
+				if(batchsize<threadCount){
 					tasks.get(batchsize%threadCount).dbm = dbm.clone();
+					tasks.get(batchsize%threadCount).rbmNr = rbmNr;
+				}				
 			}
 			
 			if(batchsize%threadCount==threadCount-1) {
