@@ -292,7 +292,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	double tempLearningrate = learningrate;
 		    //finetuning job
 		    for(int b=0; b<batches.length;b++) {
-		    	logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+learningrate);
+		    	logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
 			    for (int j = 0; j < iterations; j++) {
 			    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 			    	if(local) {
@@ -303,13 +303,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    		if(!fintuneMR(batches[b], j, tempLearningrate))
 			    			return -1;		
 			    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
-			    		logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
+			    		logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch done!");
 			    }
 		    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
 
 			    if(monitor) {
 		    		double error = classifierError(batches[b]);
-					logger.info("Classifiers average error: "+error);
+					logger.info("Classifiers average error on batch "+batches[b].getName()+": "+error);
 		    	}
 		    }
 		    //final serialization
@@ -575,10 +575,8 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     	int counter = 0;
     	Vector scores;
 		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
-    		rbmCl.classify(record.getSecond().get(),3);
-    		scores = rbmCl.getCurrentScores();
-    		error += scores.zSum();
-    		error += 1-(2*scores.get(record.getFirst().get()));
+			scores = rbmCl.classify(record.getSecond().get(),1);
+    		error += 1-scores.get(record.getFirst().get());
 			counter++;
     	}
 		error /= counter;

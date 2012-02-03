@@ -106,8 +106,7 @@ public class RBMClassifier extends AbstractVectorClassifier implements Cloneable
 		
 		DBMStateIterator.iterateUntilStableLayer(layer, dbm, stableStatesCount);
 		
-		Vector excitations = layer.getExcitations();
-		return excitations.clone();//.viewPart(1, excitations.size()-1);
+		return layer.getExcitations().clone();//.viewPart(1, excitations.size()-1);
 	}
 
 	/* (non-Javadoc)
