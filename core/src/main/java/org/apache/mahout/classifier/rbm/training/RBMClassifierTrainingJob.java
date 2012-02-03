@@ -288,16 +288,19 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	DeepBoltzmannMachine multiLayerDbm  = null;
 	    	if(local)
 	    		multiLayerDbm = rbmCl.initializeMultiLayerNN();
+	    	
+	    	double tempLearningrate = learningrate;
 		    //finetuning job
 		    for(int b=0; b<batches.length;b++) {
-				logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+learningrate);
+		    	logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+learningrate);
 			    for (int j = 0; j < iterations; j++) {
+			    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 			    	if(local) {
-			    		if(!finetuneSeq(batches[b], j, multiLayerDbm))
+			    		if(!finetuneSeq(batches[b], j, multiLayerDbm, tempLearningrate))
 			    			return -1;
 			    	}
 			    	else
-			    		if(!fintuneMR(batches[b], j))
+			    		if(!fintuneMR(batches[b], j, tempLearningrate))
 			    			return -1;		
 			    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
 			    		logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
@@ -361,7 +364,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 
 	List<BackpropTrainingThread> backpropTrainingTasks;
 	
-	private boolean finetuneSeq(Path batch, int iteration, DeepBoltzmannMachine multiLayerDbm) throws InterruptedException, ExecutionException {
+	private boolean finetuneSeq(Path batch, int iteration, DeepBoltzmannMachine multiLayerDbm, double learningrate) throws InterruptedException, ExecutionException {
 		Vector label = new DenseVector(labelcount);
 		Map<Integer, Matrix> updates = new HashMap<Integer, Matrix>();
     	int batchsize = 0;
@@ -412,7 +415,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
-	private boolean fintuneMR(Path batch, int iteration)
+	private boolean fintuneMR(Path batch, int iteration, double learningrate)
 			throws IOException, InterruptedException, ClassNotFoundException {
 		long batchsize;
 		HadoopUtil.delete(getConf(), getTempPath(WEIGHT_UPDATES));
