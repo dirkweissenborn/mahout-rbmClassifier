@@ -46,14 +46,13 @@ public class BackPropTrainer {
 			
 			errors = currentRBM.getHiddenLayer().getErrors();
 			activations = currentRBM.getVisibleLayer().getActivations();
-			for (int j = 0; j < currentMatrix.rowSize(); j++) {
-				result[i]=result[i].assignRow(j, 
-						errors.times(activations.get(j)*learningRate));
-			}
+			for (int j = 0; j < currentMatrix.rowSize(); j++) 
+				for(int k = 0; k < currentMatrix.columnSize(); k++){				
+					result[i].set(j,k, 
+							errors.get(k)* activations.get(j)*learningRate);
+				}
 			
-		}
-		
-		
+		}	
 		
 		return result;
 	}
