@@ -302,10 +302,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    	else
 			    		if(!fintuneMR(batches[b], j, tempLearningrate))
 			    			return -1;		
-			    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
-			    		logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch done!");
-			    }
+			    	logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch done!");
+			    }			    
 		    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
+
 
 			    if(monitor) {
 		    		double error = classifierError(batches[b]);

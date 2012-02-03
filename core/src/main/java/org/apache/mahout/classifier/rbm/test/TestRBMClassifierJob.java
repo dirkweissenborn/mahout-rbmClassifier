@@ -12,6 +12,8 @@ import java.util.concurrent.Future;
 
 import org.apache.commons.cli2.builder.DefaultOptionBuilder;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
@@ -42,12 +44,15 @@ public class TestRBMClassifierJob extends AbstractJob {
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
-		          "--input", "/home/dirk/mnist/440chunks/chunk113",
+		          "--input", "/home/dirk/mnist/2chunks",
 		          "--model", "/home/dirk/mnist/30its_220chunks_20h",
 		          "-lc","10"};
 	    ToolRunner.run(new Configuration(), new TestRBMClassifierJob(), args);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.apache.hadoop.util.Tool#run(java.lang.String[])
+	 */
 	@Override
 	public int run(String[] args) throws Exception {
 		addInputOption();
@@ -75,30 +80,42 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    List<String> lables= new ArrayList<String>();
 	    for(int i = 0; i<labelcount; i++)
 	    	lables.add(String.valueOf(i));
-	    
+	    FileSystem fs = getInputPath().getFileSystem(getConf());
 	    ResultAnalyzer analyzer = new ResultAnalyzer(lables, "0");
-	    
-	    if(hasOption("mapreduce")) {
-		    HadoopUtil.cacheFiles(model, getConf());
-		    //the output key is the expected value, the output value are the scores for all the labels
-		    Job testJob = prepareJob(getInputPath(), getTempPath("testresults"), SequenceFileInputFormat.class, TestRBMClassifierMapper.class,
-		            				 IntWritable.class, VectorWritable.class, SequenceFileOutputFormat.class);
-		    //testJob.getConfiguration().set(LABEL_KEY, parsedArgs.get("--labels"));
-		    testJob.waitForCompletion(true);
-		    
-		    //loop over the results and create the confusion matrix
-		    SequenceFileDirIterable<IntWritable, VectorWritable> dirIterable =
-		        new SequenceFileDirIterable<IntWritable, VectorWritable>(getTempPath("testresults"),
-				                                                          PathType.LIST,
-				                                                          PathFilters.partFilter(),
-				                                                          getConf());
-	
-		    analyzeResults(dirIterable, analyzer);
-	    
-	    }
+	    Path[] batches;
+	    if(fs.isFile(getInputPath()))
+	    	batches = new Path[]{getInputPath()};
 	    else {
-	    	analyzeResults(model, analyzer);
-	    }	    	
+	    	FileStatus[] stati = fs.listStatus(getInputPath());
+	    	batches = new Path[stati.length];
+	    	for (int i = 0; i < stati.length; i++) {
+				batches[i] = stati[i].getPath();
+			}	    		
+	    }
+	    
+	    for (Path input : batches) {
+		    if(hasOption("mapreduce")) {
+			    HadoopUtil.cacheFiles(model, getConf());
+			    //the output key is the expected value, the output value are the scores for all the labels
+			    Job testJob = prepareJob(input, getTempPath("testresults"), SequenceFileInputFormat.class, TestRBMClassifierMapper.class,
+			            				 IntWritable.class, VectorWritable.class, SequenceFileOutputFormat.class);
+			    //testJob.getConfiguration().set(LABEL_KEY, parsedArgs.get("--labels"));
+			    testJob.waitForCompletion(true);
+			    
+			    //loop over the results and create the confusion matrix
+			    SequenceFileDirIterable<IntWritable, VectorWritable> dirIterable =
+			        new SequenceFileDirIterable<IntWritable, VectorWritable>(getTempPath("testresults"),
+					                                                          PathType.LIST,
+					                                                          PathFilters.partFilter(),
+					                                                          getConf());
+		
+			    analyzeResults(dirIterable, analyzer);
+		    
+		    }
+		    else {
+		    	analyzeResults(model, analyzer,input);
+		    }	    	
+	    }
 
 	    log.info("RBMClassifier Results: {}", analyzer);
 	    
@@ -110,7 +127,7 @@ public class TestRBMClassifierJob extends AbstractJob {
 	private ExecutorService executor;
 	List<RBMClassifierCall> tasks;
 	
-	private void analyzeResults(Path model, ResultAnalyzer analyzer)
+	private void analyzeResults(Path model, ResultAnalyzer analyzer, Path input)
 			throws IOException, InterruptedException, ExecutionException {
 		int testsize =0;
 		int threadCount =20;
@@ -122,7 +139,7 @@ public class TestRBMClassifierJob extends AbstractJob {
     		tasks = new ArrayList<RBMClassifierCall>();
 
 		for (Pair<IntWritable, VectorWritable> record : 
-			 new SequenceFileIterable<IntWritable, VectorWritable>(getInputPath(),getConf())) {
+			 new SequenceFileIterable<IntWritable, VectorWritable>(input,getConf())) {
 			if(tasks.size()<threadCount)				
 				tasks.add(new RBMClassifierCall(rbmCl.clone(), record.getSecond().get(), record.getFirst().get()));
 			else {
