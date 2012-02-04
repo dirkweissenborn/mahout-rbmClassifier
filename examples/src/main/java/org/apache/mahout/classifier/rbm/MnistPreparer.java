@@ -10,6 +10,7 @@ import org.apache.commons.cli2.builder.DefaultOptionBuilder;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Closeable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.SequenceFile.Writer;
@@ -19,6 +20,8 @@ import org.apache.mahout.common.AbstractJob;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.math.DenseVector;
 import org.apache.mahout.math.VectorWritable;
+
+import com.google.common.io.Closeables;
 
 public class MnistPreparer extends AbstractJob{
 
@@ -133,8 +136,10 @@ public class MnistPreparer extends AbstractJob{
     	}
     	catch(EOFException ex){
     		//close last writer
-    		writer[writernr].close();
+    		Closeables.closeQuietly(writer[writernr]);
     	}
+    	
+    	Closeables.closeQuietly(writer[writernr]);
     	
 		return 0;
 	}
