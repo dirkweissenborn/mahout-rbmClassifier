@@ -44,7 +44,7 @@ public class TestRBMClassifierJob extends AbstractJob {
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
-		          "--input", "/home/dirk/mnist/2chunks",
+		          "--input", "/home/dirk/mnist/2chunks/chunk292",
 		          "--model", "/home/dirk/mnist/30its_220chunks_20h",
 		          "-lc","10"};
 	    ToolRunner.run(new Configuration(), new TestRBMClassifierJob(), args);
@@ -81,7 +81,7 @@ public class TestRBMClassifierJob extends AbstractJob {
 	    for(int i = 0; i<labelcount; i++)
 	    	lables.add(String.valueOf(i));
 	    FileSystem fs = getInputPath().getFileSystem(getConf());
-	    ResultAnalyzer analyzer = new ResultAnalyzer(lables, "0");
+	    ResultAnalyzer analyzer = new ResultAnalyzer(lables, "-1");
 	    Path[] batches;
 	    if(fs.isFile(getInputPath()))
 	    	batches = new Path[]{getInputPath()};

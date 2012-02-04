@@ -23,7 +23,7 @@ public class TestRBMClassifierMapper extends Mapper<IntWritable, VectorWritable,
 	protected void map(IntWritable key, VectorWritable value, Context context) throws java.io.IOException ,InterruptedException {
 		Vector result;
 		synchronized(rbmCl) {
-			result = rbmCl.classify(value.get(),4);
+			result = rbmCl.classify(value.get(),10);
 		}
 		context.write(key, new VectorWritable(result));		
 	};

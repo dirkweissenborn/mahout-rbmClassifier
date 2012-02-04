@@ -119,14 +119,13 @@ public class MnistPreparer extends AbstractJob{
 	    				}
 	    		}
 	    		
-	    		cntr++;
-	    		if(cntr%1000==0)
-	    			Logger.getLogger(this.getClass()).info(cntr+" processed pairs");
-	    		
 	    		if(closedwriters>=chunks)
 	    			break;
 	    		if(writernr==-1)
 	    			continue;
+	    		cntr++;
+	    		if(cntr%1000==0)
+	    			Logger.getLogger(this.getClass()).info(cntr+" processed pairs");
 	    		
 	    		imageVector.get().assign(pixels);
 	    		writer[writernr].append(labelVector, imageVector);	    		
