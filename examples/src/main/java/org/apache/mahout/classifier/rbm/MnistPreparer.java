@@ -134,11 +134,13 @@ public class MnistPreparer extends AbstractJob{
 	    	}
     	}
     	catch(EOFException ex){
-    		//close last writer
-    		Closeables.closeQuietly(writer[writernr]);
+    		if(writernr>-1)
+	    		//close last writer
+	    		Closeables.closeQuietly(writer[writernr]);
     	}
     	
-    	Closeables.closeQuietly(writer[writernr]);
+    	if(writernr>-1)
+    		Closeables.closeQuietly(writer[writernr]);
     	
 		return 0;
 	}
