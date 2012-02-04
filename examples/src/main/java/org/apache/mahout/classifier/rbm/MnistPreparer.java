@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 
+import org.apache.commons.cli2.builder.DefaultOptionBuilder;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -115,18 +116,17 @@ public class MnistPreparer extends AbstractJob{
 	    				}
 	    		}
 	    		
+	    		cntr++;
+	    		if(cntr%1000==0)
+	    			Logger.getLogger(this.getClass()).info(cntr+" processed pairs");
+	    		
 	    		if(closedwriters>=chunks)
 	    			break;
 	    		if(writernr==-1)
 	    			continue;
 	    		
 	    		imageVector.get().assign(pixels);
-	    		writer[writernr].append(labelVector, imageVector);
-	    		cntr++;
-	    		
-	    		if(cntr%1000==0)
-	    			Logger.getLogger(this.getClass()).info(cntr+" processed pairs");
-	    		
+	    		writer[writernr].append(labelVector, imageVector);	    		
 	    		
 	    		batches[writernr][label]--;
 	    	}
