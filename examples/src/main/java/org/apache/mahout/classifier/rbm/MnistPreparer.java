@@ -43,6 +43,7 @@ public class MnistPreparer extends AbstractJob{
 		addOption("chunknumber","cnr","number of chunks to be created",true);
 		addOption("labelpath","l","path to the label file",true);
 		addOption("imagepath","i","path to image file",true);
+		addOption("size","s","number of pairs to be processed",true);
 
 		Map<String, String> parsedArgs = parseArguments(args);
 	    if (parsedArgs == null) {
@@ -72,22 +73,23 @@ public class MnistPreparer extends AbstractJob{
     	double[] pixels=new double[28*28];
     	
     	Integer chunks = Integer.parseInt(getOption("chunknumber"));
-		
+    	Integer size = Integer.parseInt(getOption("size"));
+
     	SequenceFile.Writer[] writer = new SequenceFile.Writer[chunks];
     	int writernr=0;
     	Integer closedwriters = 0;
     	int cntr = 0;
 
     	
-    	//counter for the 10 ten labels, each batch should have 44000/chunks /10(labels) examplesof each label
+    	//counter for the ten labels, each batch should have size/chunks /10(labels) examples of each label
 		Integer[][] batches = new Integer[chunks][10];
 		for (int i = 0; i < batches.length; i++) {
 			for(int j=0; j<10; j++)
-				batches[i][j]=4400/chunks;
+				batches[i][j]=size/(10*chunks);
 		}
     	
     	try {
-	    	while(true) {
+	    	while(cntr<size) {
 	    		writernr =-1;
 	    		label = labelReader.readUnsignedByte();
 	    		labelVector.set(label);
