@@ -209,10 +209,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    		((SimpleRBM)rbmCl.getDbm().getRBM(rbmNr)).setWeightMatrix(
 			    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNr)).getWeightMatrix().times(2));
 			    	}
-					
-			    	for(int b=0; b<batches.length;b++) {			
-						logger.info("Greedy training of batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
-					    for (int j = 0; j < iterations; j++) {
+			    	
+				    for (int j = 0; j < iterations; j++) {
+						logger.info("Greedy training, epoch "+(j+1)+"\nCurrent learningrate: "+tempLearningrate);
+				    	for(int b=0; b<batches.length;b++) {			
 					    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 					    	if(local) {
 					    		if(!trainGreedySeq(rbmNr, batches[b], j, tempLearningrate))
@@ -221,14 +221,14 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					    	else
 							    if(!trainGreedyMR(rbmNr, batches[b], j, tempLearningrate))
 							    	return -1;
-					    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
-					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch  done!");
+					    	if(monitor&&(batches.length>19)&&(b+1)%(batches.length/20)==0)
+					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch  done!");
 					    }
-				    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
+				    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training on rbm number "+rbmNr+" is done!");
 
 					    if(monitor) {
-							double error = rbmError(batches[b], rbmNr);
-							logger.info("Average reconstruction error on batch: "+error);
+							double error = rbmError(batches[0], rbmNr);
+							logger.info("Average reconstruction error on batch "+batches[0].getName()+": "+error);
 						}
 					    
 					    rbmCl.serialize(output, getConf());
@@ -247,11 +247,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).getWeightMatrix().times(2));
 		    	}
 	    		//train just wanted rbm
-	    		for(int b=0; b<batches.length;b++) {
-					logger.info("Greedy training of batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
-	    			//tempLearningrate = learningrate;
-				    for (int j = 0; j < iterations; j++) {
-				    		tempLearningrate -= learningrate/(iterations*batches.length+iterations);
+			    for (int j = 0; j < iterations; j++) {
+					logger.info("Greedy training, epoch "+(j+1)+"\nCurrent learningrate: "+tempLearningrate);
+		    		for(int b=0; b<batches.length;b++) {		
+				    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 				    	if(local) {
 				    		if(!trainGreedySeq(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1; 
@@ -259,14 +258,14 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				    	else
 						    if(!trainGreedyMR(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1;				
-				    	if(monitor&&(iterations>4)&&(j+1)%(iterations/5)==0)
-				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch "+batches[b].getName()+" done!");
-				    }
-			    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
-			    	
-				    if(monitor) {
-						double error = rbmError(batches[b], rbmNrtoTrain);
-						logger.info("Average reconstruction error on batch: "+error);
+				    	if(monitor&&(batches.length>19)&&(b+1)%(batches.length/20)==0)
+				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
+					    }
+			    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training is done!");
+
+			    	if(monitor) {
+						double error = rbmError(batches[0], rbmNrtoTrain);
+						logger.info("Average reconstruction error on batch "+batches[0].getName()+": "+error);
 					}
 	    		}
 	    		
@@ -278,7 +277,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	}
 
 		    rbmCl.serialize(output, getConf());
-		    logger.info("Pretraining done");
+		    logger.info("Pretraining done and model written to output");
 	    }
 	    
 	    if(finetuning) {
@@ -293,9 +292,9 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	
 	    	double tempLearningrate = learningrate;
 		    //finetuning job
-		    for(int b=0; b<batches.length;b++) {
-		    	logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
-			    for (int j = 0; j < iterations; j++) {
+		    for (int j = 0; j < iterations; j++) {
+		    	for(int b=0; b<batches.length;b++) {
+		    		logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
 			    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 			    	if(local) {
 			    		if(!finetuneSeq(batches[b], j, multiLayerDbm, tempLearningrate))
@@ -304,19 +303,19 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    	else
 			    		if(!fintuneMR(batches[b], j, tempLearningrate))
 			    			return -1;		
-			    	logger.info("Finetuning: "+Math.round(((double)j+1)/iterations*100.0)+"% on batch done!");
+			    	logger.info("Finetuning: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
 			    }			    
-		    	logger.info(Math.round(((double)b)/batches.length*100)+"% of training is done!");
+		    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training is done!");
 
 
 			    if(monitor) {
-		    		double error = classifierError(batches[b]);
-					logger.info("Classifiers average error on batch "+batches[b].getName()+": "+error);
+		    		double error = classifierError(batches[0]);
+					logger.info("Classifiers average error on batch "+batches[0].getName()+": "+error);
 		    	}
 		    }
 		    //final serialization
 		    rbmCl.serialize(output, getConf());
-		    logger.info("RBM finetuning done");
+		    logger.info("RBM finetuning done and model written to output");
 	    }
 	    
 	    if(executor!=null)
