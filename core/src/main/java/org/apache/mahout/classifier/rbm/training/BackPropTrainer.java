@@ -20,10 +20,7 @@ public class BackPropTrainer {
 		for(int i = 0; i< dbm.getRbmCount(); i++) {
 			currentRBM = dbm.getRBM(i);
 			currentRBM.exciteHiddenLayer(1, false);
-			if(i==dbm.getRbmCount()-1)
-				currentRBM.getHiddenLayer().setProbabilitiesAsActivation();
-			else
-				currentRBM.updateHiddenLayer();
+			currentRBM.getHiddenLayer().setProbabilitiesAsActivation();
 		}
 		
 		currentRBM.getHiddenLayer().computeNeuronErrors(output);

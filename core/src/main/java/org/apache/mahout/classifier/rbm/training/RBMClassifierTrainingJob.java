@@ -70,7 +70,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		if(args==null|| args.length==0)
 			args = new String[]{
 		          "--input", "/home/dirk/mnist/440chunks/chunk113",
-		          "--output", "/home/dirk/mnist/30its_220chunks_20h",
+		          "--output", "/home/dirk/mnist/modeltest",
 		          //"--structure", "784,500,1000",
 		          "--labelcount", "10"	,
 		          "--maxIter", "10",
@@ -230,6 +230,8 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 							double error = rbmError(batches[b], rbmNr);
 							logger.info("Average reconstruction error on batch: "+error);
 						}
+					    
+					    rbmCl.serialize(output, getConf());
 					}    	
 			    	
 			    	//weight normalization to avoid double counting
