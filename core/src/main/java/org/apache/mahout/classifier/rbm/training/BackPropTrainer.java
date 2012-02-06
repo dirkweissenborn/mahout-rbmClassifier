@@ -9,7 +9,7 @@ import org.apache.mahout.math.Vector;
 
 public class BackPropTrainer {
 	double learningRate;
-
+	
 	public BackPropTrainer(double learningrate) {
 		this.learningRate = learningrate;
 	}
@@ -24,7 +24,6 @@ public class BackPropTrainer {
 		}
 		
 		currentRBM.getHiddenLayer().computeNeuronErrors(output);
-		//error = currentRBM.getHiddenLayer().getErrors().zSum();
 		
 		for(int i = dbm.getRbmCount()-1; i>0;i--) {
 			currentRBM = dbm.getRBM(i);
@@ -54,7 +53,4 @@ public class BackPropTrainer {
 		return result;
 	}
 	
-	
-	
-
 }

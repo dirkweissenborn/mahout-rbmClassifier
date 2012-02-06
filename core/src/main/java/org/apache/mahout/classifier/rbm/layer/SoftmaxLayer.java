@@ -92,7 +92,7 @@ public class SoftmaxLayer extends AbstractLayer {
 	@Override
 	public double getActivationDerivativeOfNeuron(int i) {
 		double exp = Math.exp(inputs.get(i)+biases.get(i));
-		return (partitionSum * exp+exp*exp)/(partitionSum*partitionSum);
+		return (partitionSum * exp-exp*exp)/(partitionSum*partitionSum);
 	}
 	
 	/* (non-Javadoc)

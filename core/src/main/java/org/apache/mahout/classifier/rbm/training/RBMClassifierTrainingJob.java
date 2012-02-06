@@ -28,6 +28,7 @@ import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.classifier.rbm.RBMClassifier;
 import org.apache.mahout.classifier.rbm.model.LabeledSimpleRBM;
+import org.apache.mahout.classifier.rbm.model.RBMModel;
 import org.apache.mahout.classifier.rbm.model.SimpleRBM;
 import org.apache.mahout.classifier.rbm.network.DeepBoltzmannMachine;
 import org.apache.mahout.common.AbstractJob;
@@ -66,11 +67,15 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     int nrGibbsSampling;
     int rbmNrtoTrain;
 	
+	/**
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
 		          "--input", "/home/dirk/mnist/440chunks/chunk113",
-		          "--output", "/home/dirk/mnist/modeltest",
+		          "--output", "/home/dirk/models/model_440chunks",
 		          //"--structure", "784,500,1000",
 		          "--labelcount", "10"	,
 		          "--maxIter", "10",
@@ -222,7 +227,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 							    if(!trainGreedyMR(rbmNr, batches[b], j, tempLearningrate))
 							    	return -1;
 					    	if(monitor&&(batches.length>19)&&(b+1)%(batches.length/20)==0)
-					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch  done!");
+					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
 					    }
 				    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training on rbm number "+rbmNr+" is done!");
 
@@ -281,19 +286,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    }
 	    
 	    if(finetuning) {
-	    	if(monitor) {
-	    		double error = classifierError(batches[0]);
-				logger.info("Classifiers average error on batch "+batches[0].getName()+
-							" before finetuning: "+error);
-	    	}
 	    	DeepBoltzmannMachine multiLayerDbm  = null;
-	    	if(local)
-	    		multiLayerDbm = rbmCl.initializeMultiLayerNN();
 	    	
 	    	double tempLearningrate = learningrate;
 		    //finetuning job
 		    for (int j = 0; j < iterations; j++) {
 		    	for(int b=0; b<batches.length;b++) {
+		    		multiLayerDbm = rbmCl.initializeMultiLayerNN();
 		    		logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
 			    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
 			    	if(local) {
@@ -310,7 +309,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 
 			    if(monitor) {
 		    		double error = classifierError(batches[0]);
-					logger.info("Classifiers average error on batch "+batches[0].getName()+": "+error);
+					logger.info("Average classifier error on batch "+batches[0].getName()+": "+error);
 		    	}
 		    }
 		    //final serialization
@@ -405,8 +404,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					}
 					
 				}
-			}
-			
+			}		
 
 			batchsize++;
 		}
@@ -580,6 +578,24 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     		error += 1-scores.get(record.getFirst().get());
 			counter++;
     	}
+		error /= counter;
+		return error;
+	}
+	
+	private double feedForwardError(DeepBoltzmannMachine feedForwardNet, Path batch) {
+		double error = 0;
+    	int counter = 0;
+		RBMModel currentRBM =null;
+		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
+			feedForwardNet.getRBM(0).getVisibleLayer().setActivations(record.getSecond().get());
+			for(int i = 0; i< feedForwardNet.getRbmCount(); i++) {
+				currentRBM = feedForwardNet.getRBM(i);
+				currentRBM.exciteHiddenLayer(1, false);
+				currentRBM.getHiddenLayer().setProbabilitiesAsActivation();
+			}
+			error+= 1-currentRBM.getHiddenLayer().getActivations().get(record.getFirst().get());
+			counter++;
+		}
 		error /= counter;
 		return error;
 	}
