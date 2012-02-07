@@ -31,6 +31,8 @@ public class DBMBackPropTrainingMapper extends Mapper<IntWritable, VectorWritabl
 		label = new DenseVector(count);
 	};
 	protected void map(IntWritable key, VectorWritable value, org.apache.hadoop.mapreduce.Mapper<VectorWritable,VectorWritable,IntWritable,MatrixWritable>.Context context) throws java.io.IOException ,InterruptedException {
+		for (int i = 0; i < label.size(); i++)
+			label.setQuick(i, 0);
 		label.set(key.get(), 1);
 		
 		BackPropTrainer trainer = new BackPropTrainer(learningrate);

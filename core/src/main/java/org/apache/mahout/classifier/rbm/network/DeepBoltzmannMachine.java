@@ -159,9 +159,9 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 	@Override
 	public void upPass() {
 		for (int i = 0; i < getRbmCount(); i++) {
-			RBMModel rbm = rbms.get(i);
-			
+			RBMModel rbm = rbms.get(i);			
 			rbm.exciteHiddenLayer((i<getRbmCount()-1)?2:1, false);
+			rbm.updateHiddenLayer();
 		}
 	}
 

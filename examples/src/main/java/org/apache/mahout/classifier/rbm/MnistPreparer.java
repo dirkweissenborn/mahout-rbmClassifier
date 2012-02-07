@@ -29,8 +29,8 @@ public class MnistPreparer extends AbstractJob{
 		if(args == null || args.length==0)
 			args = new String[]{"--imagepath","/home/dirk/mnist/train-images-idx3-ubyte",
 							    "--labelpath","/home/dirk/mnist/train-labels-idx1-ubyte",
-						  		"--output","/home/dirk/mnist/out",
-						  		"-cnr","440"};
+						  		"--output","/home/dirk/mnist/chunks4_finetuning",
+						  		"-cnr","4","--size","20000"};
 		
 	    ToolRunner.run(new Configuration(), new MnistPreparer(), args);
 	}

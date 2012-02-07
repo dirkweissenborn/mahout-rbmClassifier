@@ -141,16 +141,10 @@ public abstract class AbstractLayer implements Layer {
 	 */
 	@Override
 	public void computeNeuronErrors(Layer nextLayer, Matrix weightMatrix) {
-		double sum = 0;
-		Vector nextErrors = nextLayer.getErrors();
-		for (int i = 0; i < activations.size(); i++) {
-			sum = 0;
-			for (int j = 0; j < nextLayer.getNeuronCount(); j++) {
-				sum += nextErrors.get(j)*weightMatrix.get(i, j);
-			}
-			errors.set(i,
-					getActivationDerivativeOfNeuron(i)*sum);
-			
+		errors = weightMatrix.times(nextLayer.getErrors());
+		
+		for (int i = 0; i < errors.size(); i++) {
+			errors.setQuick(i, errors.get(i)*getActivationDerivativeOfNeuron(i));
 		}
 	}
 

@@ -45,8 +45,7 @@ public class LogisticLayer extends AbstractLayer {
 	 */
 	@Override
 	public double getActivationDerivativeOfNeuron(int i) {
-		double exp = Math.exp(inputs.get(i)+biases.get(i));
-		return exp/((exp+1)*(exp+1));
+		return excitations.get(i)*(1-excitations.get(i));
 	}
 	
 	/* (non-Javadoc)

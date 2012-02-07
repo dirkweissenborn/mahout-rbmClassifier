@@ -74,11 +74,12 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
 			args = new String[]{
-		          "--input", "/home/dirk/mnist/440chunks/chunk113",
-		          "--output", "/home/dirk/models/model_440chunks",
+		          "--input", "/home/dirk/mnist/440chunks/chunk0",
+		          "--output", "/home/dirk/models/model_440chunks_nofine",
 		          //"--structure", "784,500,1000",
+		          "--learningrate","0.05",
 		          "--labelcount", "10"	,
-		          "--maxIter", "10",
+		          "--maxIter", "30",
 		          "--monitor","-ng","-nb"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
@@ -285,7 +286,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    logger.info("Pretraining done and model written to output");
 	    }
 	    
-	    if(finetuning) {
+	    if(finetuning) {	    	
 	    	DeepBoltzmannMachine multiLayerDbm  = null;
 	    	
 	    	double tempLearningrate = learningrate;
@@ -308,7 +309,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 
 
 			    if(monitor) {
-		    		double error = classifierError(batches[0]);
+		    		double error = feedForwardError(multiLayerDbm, batches[0]);
 					logger.info("Average classifier error on batch "+batches[0].getName()+": "+error);
 		    	}
 		    }
@@ -377,6 +378,9 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     		executor = Executors.newFixedThreadPool(threadCount);
     	
 		for (Pair<IntWritable, VectorWritable> record : new SequenceFileIterable<IntWritable, VectorWritable>(batch, getConf())) {
+			for (int i = 0; i < label.size(); i++)
+				label.setQuick(i, 0);
+				
 			label.set(record.getFirst().get(), 1);
 			
 			BackPropTrainer trainer = new BackPropTrainer(learningrate);
