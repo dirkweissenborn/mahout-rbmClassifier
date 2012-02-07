@@ -310,7 +310,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 
 			    if(monitor) {
 		    		double error = feedForwardError(multiLayerDbm, batches[0]);
-					logger.info("Average classifier error on batch "+batches[0].getName()+": "+error);
+					logger.info("Average discriminative error on batch "+batches[0].getName()+": "+error);
 		    	}
 		    }
 		    //final serialization
