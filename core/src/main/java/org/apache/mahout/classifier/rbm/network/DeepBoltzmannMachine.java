@@ -1,17 +1,28 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.mahout.classifier.rbm.network;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -26,14 +37,30 @@ import org.apache.mahout.math.MatrixWritable;
 
 import com.google.common.io.Closeables;
 
+/**
+ * A DeepBoltzmannMachine is a (deep belief) neural network consisting of a stack of restricted boltzmann machines.
+ */
 public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
-	List<RBMModel> rbms;
 	
+	/** The restricted boltzmann machines where nr 0 is lowest. */
+	private List<RBMModel> rbms;
+	
+	/**
+	 * Instantiates a new deep boltzmann machine.
+	 *
+	 * @param lowestRBM the lowest rbm
+	 */
 	public DeepBoltzmannMachine(RBMModel lowestRBM) {
 		rbms = new  ArrayList<RBMModel>();
 		rbms.add(lowestRBM);
 	}
 	
+	/**
+	 * Put a new RBM on the stack.
+	 *
+	 * @param rbm the RBM
+	 * @return true, if successful
+	 */
 	public boolean stackRBM(RBMModel rbm) {
 		if(rbm.getVisibleLayer().equals(rbms.get(rbms.size()-1).getHiddenLayer())) {
 			rbms.add(rbm);
@@ -43,6 +70,13 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 			return false;
 	}
 	
+	/**
+	 * Serialize to the output.
+	 *
+	 * @param output the output
+	 * @param conf the conf
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void serialize(Path output, Configuration conf) throws IOException {
 		FileSystem fs = output.getFileSystem(conf);
 		FSDataOutputStream out = fs.create(output, true);
@@ -66,11 +100,19 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 	    }		
 	}
 	
-	public static DeepBoltzmannMachine materialize(Path output, Configuration conf) throws IOException {
-		FileSystem fs = output.getFileSystem(conf);
+	/**
+	 * Materialize from input path.
+	 *
+	 * @param input the input path
+	 * @param conf the hadoop config
+	 * @return the deep boltzmann machine
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public static DeepBoltzmannMachine materialize(Path input, Configuration conf) throws IOException {
+		FileSystem fs = input.getFileSystem(conf);
 	    String visLayerType = "";
 	    String hidLayerType = "";
-	    FSDataInputStream in = fs.open(output);
+	    FSDataInputStream in = fs.open(input);
 	    DeepBoltzmannMachine dbm = null;
 	    
 	    try {
@@ -120,6 +162,12 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 		return dbm;
 	}
 	
+	/**
+	 * Get the i-th RBM.
+	 *
+	 * @param i the i
+	 * @return the rBM
+	 */
 	public RBMModel getRBM(Integer i) {
 		if(i<=rbms.size())
 			return rbms.get(i);
@@ -127,14 +175,27 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 			return null;
 	}
 	
+	/**
+	 * Gets the size of the rbm stack.
+	 *
+	 * @return the stacksize of rbms
+	 */
 	public int getRbmCount() {
 		return rbms.size();
 	}
 	
+	/**
+	 * Gets the layer count.
+	 *
+	 * @return the layer count
+	 */
 	public int getLayerCount() {
 		return rbms.size()+1;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.network.DeepBeliefNetwork#exciteLayer(int)
+	 */
 	@Override
 	public void exciteLayer(int l) {
 		boolean addInput = (l<getRbmCount());
@@ -149,6 +210,9 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.network.DeepBeliefNetwork#getLayer(int)
+	 */
 	@Override
 	public Layer getLayer(int l) {
 		if(l<getRbmCount())
@@ -156,6 +220,9 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 		return getRBM(l-1).getHiddenLayer();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.network.DeepBeliefNetwork#upPass()
+	 */
 	@Override
 	public void upPass() {
 		for (int i = 0; i < getRbmCount(); i++) {
@@ -165,6 +232,9 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.apache.mahout.classifier.rbm.network.DeepBeliefNetwork#updateLayer(int)
+	 */
 	@Override
 	public void updateLayer(int l) {
 		if(l<getRbmCount()){
@@ -175,6 +245,9 @@ public class DeepBoltzmannMachine implements DeepBeliefNetwork, Cloneable{
 			getRBM(l-1).updateHiddenLayer();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#clone()
+	 */
 	public DeepBoltzmannMachine clone(){
 		DeepBoltzmannMachine dbm = new DeepBoltzmannMachine(rbms.get(0).clone());
 		for (int i = 1; i < rbms.size(); i++) {

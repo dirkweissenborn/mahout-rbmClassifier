@@ -1,3 +1,19 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.mahout.classifier.rbm;
 
 import java.io.DataInputStream;
@@ -6,11 +22,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 
-import org.apache.commons.cli2.builder.DefaultOptionBuilder;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.Closeable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.SequenceFile.Writer;
@@ -23,22 +37,29 @@ import org.apache.mahout.math.VectorWritable;
 
 import com.google.common.io.Closeables;
 
+/**
+ * The Class MnistPreparer.
+ */
 public class MnistPreparer extends AbstractJob{
 
-	public static void main(String[] args) throws Exception {
-		if(args == null || args.length==0)
-			args = new String[]{"--imagepath","/home/dirk/mnist/train-images-idx3-ubyte",
-							    "--labelpath","/home/dirk/mnist/train-labels-idx1-ubyte",
-						  		"--output","/home/dirk/mnist/chunks4_finetuning",
-						  		"-cnr","4","--size","20000"};
-		
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
+	 */
+	public static void main(String[] args) throws Exception {		
 	    ToolRunner.run(new Configuration(), new MnistPreparer(), args);
 	}
 	
 
 	/**
-	 * only processes 44.000 images like the paper [hinton,2006] proposed
+	 * To only process 44.000 images like the paper [hinton,2006] proposed, choose size 44000
 	 * (http://www.cs.toronto.edu/~hinton/absps/ncfast.pdf)
+	 *
+	 * @param args the args
+	 * @return the int
+	 * @throws Exception the exception
 	 */
 	@Override
 	public int run(String[] args) throws Exception {		

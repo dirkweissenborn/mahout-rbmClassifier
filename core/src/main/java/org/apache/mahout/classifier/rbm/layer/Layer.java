@@ -32,7 +32,7 @@ public interface Layer {
 	int getNeuronCount();	
 
 	/**
-	 * Input a specified input to a specified unit.
+	 * update the input of a specified unit.
 	 *
 	 * @param neuron the neuron
 	 * @param input the input

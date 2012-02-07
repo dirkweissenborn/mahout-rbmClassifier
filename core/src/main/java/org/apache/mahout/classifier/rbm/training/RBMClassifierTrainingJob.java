@@ -1,10 +1,24 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.apache.mahout.classifier.rbm.training;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -12,11 +26,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.prefs.BackingStoreException;
 
 import org.apache.commons.cli2.builder.DefaultOptionBuilder;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
@@ -48,28 +59,61 @@ import org.apache.mahout.math.VectorWritable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Class RBMClassifierTrainingJob.
+ */
 public class RBMClassifierTrainingJob extends AbstractJob{
 
+	/** The Constant WEIGHT_UPDATES. */
 	public static final String WEIGHT_UPDATES = "weightupdates";
+	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory.getLogger(RBMClassifierTrainingJob.class);
 	
+	/** The last update which is needed for use of the momentum. */
 	Matrix[] lastUpdate;
+	
+	/** The rbm classifier. */
 	RBMClassifier rbmCl=null;
-	int iterations = 10;
+	
+	/** The number of iterations (epochs). */
+	int epochs;
+    
+    /** The learningrate. */
     double learningrate;
+    
+    /** The momentum used. */
     double momentum;
+    
+    /** monitor if true. */
     boolean monitor;
+    
+    /** initial biases if true. */
     boolean initbiases;
+    
+    /** train greedy if true. */
     boolean greedy;
+    
+    /** finetune if true. */
     boolean finetuning;
+    
+    /** The batches to train on. */
     Path[] batches = null;
+    
+    /** The labelcount. */
     int labelcount;
+    
+    /** The nr gibbs sampling. */
     int nrGibbsSampling;
+    
+    /** The rbm nr to train. */
     int rbmNrtoTrain;
 	
 	/**
-	 * @param args
-	 * @throws Exception
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception {
 		if(args==null|| args.length==0)
@@ -79,16 +123,19 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		          //"--structure", "784,500,1000",
 		          "--learningrate","0.05",
 		          "--labelcount", "10"	,
-		          "--maxIter", "30",
-		          "--monitor","-ng","-nb"};
+		          "--epochs", "2",
+		          "--monitor","-nb","-ng","--mapreduce"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
 	
+	/* (non-Javadoc)
+	 * @see org.apache.hadoop.util.Tool#run(java.lang.String[])
+	 */
 	@Override
 	public int run(String[] args) throws Exception {		
 		addInputOption();
 	    addOutputOption();
-	    addOption(DefaultOptionCreator.maxIterationsOption().create());
+	    addOption("epochs","e","number of training epochs through the trainingset",true);
 	    addOption("structure", "s", "comma-separated list of layer sizes", false);
 	    addOption("labelcount", "lc", "total count of labels existent in the training set", true);
 	    addOption("learningrate", "lr", "learning rate at the beginning of training", "0.005");
@@ -118,8 +165,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    addOption(new DefaultOptionBuilder()
         			.withLongName("monitor")
         			.withRequired(false)
-        			.withDescription(
-        					"If present, errors can be monitored in cosole")
+        			.withDescription("If present, errors can be monitored in cosole")
         			.withShortName("mon").create());
 	    addOption(DefaultOptionCreator.overwriteOption().create());
 	    
@@ -149,7 +195,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			}	    		
 	    }
 
-	    iterations = Integer.valueOf(getOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION));
+	    epochs = Integer.valueOf(getOption("epochs"));
     	learningrate = Double.parseDouble(getOption("learningrate"));	    
     	momentum = Double.parseDouble(getOption("momentum"));
     	rbmNrtoTrain = Integer.parseInt(getOption("rbmnr"));
@@ -216,10 +262,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNr)).getWeightMatrix().times(2));
 			    	}
 			    	
-				    for (int j = 0; j < iterations; j++) {
+				    for (int j = 0; j < epochs; j++) {
 						logger.info("Greedy training, epoch "+(j+1)+"\nCurrent learningrate: "+tempLearningrate);
 				    	for(int b=0; b<batches.length;b++) {			
-					    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
+					    	tempLearningrate -= learningrate/(epochs*batches.length+epochs);
 					    	if(local) {
 					    		if(!trainGreedySeq(rbmNr, batches[b], j, tempLearningrate))
 					    			return -1; 
@@ -230,7 +276,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					    	if(monitor&&(batches.length>19)&&(b+1)%(batches.length/20)==0)
 					    		logger.info(rbmNr+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
 					    }
-				    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training on rbm number "+rbmNr+" is done!");
+				    	logger.info(Math.round(((double)j+1)/epochs*100)+"% of training on rbm number "+rbmNr+" is done!");
 
 					    if(monitor) {
 							double error = rbmError(batches[0], rbmNr);
@@ -253,10 +299,10 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    				((SimpleRBM)rbmCl.getDbm().getRBM(rbmNrtoTrain)).getWeightMatrix().times(2));
 		    	}
 	    		//train just wanted rbm
-			    for (int j = 0; j < iterations; j++) {
+			    for (int j = 0; j < epochs; j++) {
 					logger.info("Greedy training, epoch "+(j+1)+"\nCurrent learningrate: "+tempLearningrate);
 		    		for(int b=0; b<batches.length;b++) {		
-				    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
+				    	tempLearningrate -= learningrate/(epochs*batches.length+epochs);
 				    	if(local) {
 				    		if(!trainGreedySeq(rbmNrtoTrain, batches[b], j,tempLearningrate))
 						    	return -1; 
@@ -267,7 +313,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				    	if(monitor&&(batches.length>19)&&(b+1)%(batches.length/20)==0)
 				    		logger.info(rbmNrtoTrain+"-RBM: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
 					    }
-			    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training is done!");
+			    	logger.info(Math.round(((double)j+1)/epochs*100)+"% of training is done!");
 
 			    	if(monitor) {
 						double error = rbmError(batches[0], rbmNrtoTrain);
@@ -291,11 +337,11 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	    	
 	    	double tempLearningrate = learningrate;
 		    //finetuning job
-		    for (int j = 0; j < iterations; j++) {
+		    for (int j = 0; j < epochs; j++) {
 		    	for(int b=0; b<batches.length;b++) {
 		    		multiLayerDbm = rbmCl.initializeMultiLayerNN();
 		    		logger.info("Finetuning on batch "+batches[b].getName()+"\nCurrent learningrate: "+tempLearningrate);
-			    	tempLearningrate -= learningrate/(iterations*batches.length+iterations);
+			    	tempLearningrate -= learningrate/(epochs*batches.length+epochs);
 			    	if(local) {
 			    		if(!finetuneSeq(batches[b], j, multiLayerDbm, tempLearningrate))
 			    			return -1;
@@ -305,7 +351,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			    			return -1;		
 			    	logger.info("Finetuning: "+Math.round(((double)b+1)/batches.length*100.0)+"% in epoch done!");
 			    }			    
-		    	logger.info(Math.round(((double)j+1)/iterations*100)+"% of training is done!");
+		    	logger.info(Math.round(((double)j+1)/epochs*100)+"% of training is done!");
 
 
 			    if(monitor) {
@@ -324,13 +370,31 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return 0;
 	}
 	
+	/**
+	 * The Class BackpropTrainingThread is the callable thread for the local backprop task.
+	 */
 	class BackpropTrainingThread implements Callable<Matrix[]> {
 
+		/** The dbm. */
 		private DeepBoltzmannMachine dbm;
+		
+		/** The input. */
 		private Vector input;
+		
+		/** The label. */
 		private Vector label;
+		
+		/** The trainer. */
 		private BackPropTrainer trainer;
 
+		/**
+		 * Instantiates a new backprop training thread.
+		 *
+		 * @param dbm the dbm
+		 * @param label the label
+		 * @param input the input
+		 * @param trainer the trainer
+		 */
 		public BackpropTrainingThread(DeepBoltzmannMachine dbm, Vector label, Vector input, BackPropTrainer trainer) {
 			this.dbm = dbm;
 			this.label = label;
@@ -338,11 +402,16 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			this.trainer = trainer;
 		}
 		
+		/* (non-Javadoc)
+		 * @see java.util.concurrent.Callable#call()
+		 */
 		@Override
 		public Matrix[] call() throws Exception {
 			Matrix[] result = trainer.calculateWeightUpdates(dbm, input, label);
 			Matrix[] weightUpdates =new Matrix[dbm.getRbmCount()-1];
-
+			
+			//write for each RBM i (key, number of rbm) the result and put together the last two
+			//matrices since they refer to just one labeled rbm, which was split to two for the training
 			for (int i = 0; i < result.length-1; i++) {
 				if(i==result.length-2) {
 					weightUpdates[i] = new DenseMatrix(result[i].rowSize()+result[i+1].columnSize(), result[i].columnSize());
@@ -363,17 +432,31 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		
 	}
 
+	/** The backprop training tasks. */
 	List<BackpropTrainingThread> backpropTrainingTasks;
 	
+	/**
+	 * Finetune locally.
+	 *
+	 * @param batch the batch
+	 * @param iteration the iteration
+	 * @param multiLayerDbm the multilayer dbm
+	 * @param learningrate the learningrate
+	 * @return true, if successful
+	 * @throws InterruptedException the interrupted exception
+	 * @throws ExecutionException the execution exception
+	 */
 	private boolean finetuneSeq(Path batch, int iteration, DeepBoltzmannMachine multiLayerDbm, double learningrate) throws InterruptedException, ExecutionException {
 		Vector label = new DenseVector(labelcount);
 		Map<Integer, Matrix> updates = new HashMap<Integer, Matrix>();
     	int batchsize = 0;
+		//maximum number of threads that are used, I think 20 is ok
     	int threadCount = 20;
     	Matrix[] weightUpdates;
-    	
+    	//initialize the tasks, which are run by the executor
     	if(backpropTrainingTasks==null)
     		backpropTrainingTasks = new ArrayList<BackpropTrainingThread>();
+    	//initialize the executor if not already done
     	if(executor==null)
     		executor = Executors.newFixedThreadPool(threadCount);
     	
@@ -385,6 +468,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			
 			BackPropTrainer trainer = new BackPropTrainer(learningrate);
 			
+			//prepare the tasks
 			if(backpropTrainingTasks.size()<threadCount)				
 				backpropTrainingTasks.add(new BackpropTrainingThread(multiLayerDbm.clone(), label.clone(), record.getSecond().get(), trainer));
 			else {
@@ -395,6 +479,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 				}				
 			}
 			
+			//run the tasks and save results
 			if(batchsize%threadCount==threadCount-1) {
 				List<Future<Matrix[]>> futureUpdates = executor.invokeAll(backpropTrainingTasks);
 				for (int i = 0; i < futureUpdates.size(); i++) {
@@ -403,14 +488,26 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 						if(updates.containsKey(j))
 							updates.put(j, weightUpdates[j].plus(updates.get(j)));
 						else
-							updates.put(j, weightUpdates[j]);
-						
-					}
-					
+							updates.put(j, weightUpdates[j]);						
+					}					
 				}
 			}		
 
 			batchsize++;
+		}
+		
+		//run remaining tasks
+		if(batchsize%20!=0) {
+			List<Future<Matrix[]>> futureUpdates = executor.invokeAll(backpropTrainingTasks.subList(0, (batchsize-1) %20));
+			for (int i = 0; i < futureUpdates.size(); i++) {
+				weightUpdates = futureUpdates.get(i).get();
+				for (int j = 0; j < weightUpdates.length; j++) {
+					if(updates.containsKey(j))
+						updates.put(j, weightUpdates[j].plus(updates.get(j)));
+					else
+						updates.put(j, weightUpdates[j]);						
+				}					
+			}
 		}
 	
 	    updateRbmCl(batchsize, (iteration==0)?0:momentum, updates);
@@ -418,8 +515,20 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
+	/**
+	 * Fintune using map/reduce.
+	 *
+	 * @param batch the batch
+	 * @param iteration the iteration
+	 * @param learningrate the learningrate
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
+	 * @throws ClassNotFoundException the class not found exception
+	 */
 	private boolean fintuneMR(Path batch, int iteration, double learningrate)
 			throws IOException, InterruptedException, ClassNotFoundException {
+		//prepare and run finetune job
 		long batchsize;
 		HadoopUtil.delete(getConf(), getTempPath(WEIGHT_UPDATES));
 		HadoopUtil.cacheFiles(getOutputPath(), getConf());
@@ -442,14 +551,35 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
+	/**
+	 * The Class GreedyTrainingThread.
+	 */
 	class GreedyTrainingThread implements Callable<Matrix> {
 
+		/** The dbm. */
 		private DeepBoltzmannMachine dbm;
+		
+		/** The input. */
 		private Vector input;
+		
+		/** The label. */
 		private Vector label;
+		
+		/** The trainer. */
 		private CDTrainer trainer;
+		
+		/** The rbm nr to train. */
 		int rbmNr;
 
+		/**
+		 * Instantiates a new greedy training thread.
+		 *
+		 * @param dbm the dbm
+		 * @param label the label
+		 * @param input the input
+		 * @param trainer the trainer
+		 * @param rbmNr the rbm nr
+		 */
 		public GreedyTrainingThread(DeepBoltzmannMachine dbm, Vector label, Vector input, CDTrainer trainer, int rbmNr) {
 			this.dbm = dbm;
 			this.label = label;
@@ -458,6 +588,9 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			this.rbmNr = rbmNr;
 		}
 		
+		/* (non-Javadoc)
+		 * @see java.util.concurrent.Callable#call()
+		 */
 		@Override
 		public Matrix call() throws Exception {
 			Matrix updates = null;
@@ -485,14 +618,29 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		
 	}
 	
+	/** The executor. */
 	private ExecutorService executor;
+	
+	/** The greedy training tasks. */
 	List<GreedyTrainingThread> greedyTrainingTasks;
 	
+	/**
+	 * Train greedy seq.
+	 *
+	 * @param rbmNr the rbm nr
+	 * @param batch the batch
+	 * @param iteration the iteration
+	 * @param learningrate the learningrate
+	 * @return true, if successful
+	 * @throws InterruptedException the interrupted exception
+	 * @throws ExecutionException the execution exception
+	 */
 	private boolean trainGreedySeq(int rbmNr, Path batch, int iteration, double learningrate) throws InterruptedException, ExecutionException {
     	int batchsize = 0;
     	DeepBoltzmannMachine dbm = rbmCl.getDbm();
     	Vector label = new DenseVector(labelcount);
     	Matrix updates = null;
+    	//number of threads running the tasks
     	int threadCount =20;
     	if(executor==null)
     		executor = Executors.newFixedThreadPool(threadCount);
@@ -503,7 +651,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 			CDTrainer trainer = new CDTrainer(learningrate, nrGibbsSampling);
 			label.assign(0);
 			label.set(record.getFirst().get(), 1);
-			
+			//prepare the tasks
 			if(greedyTrainingTasks.size()<threadCount)				
 				greedyTrainingTasks.add(new GreedyTrainingThread(dbm.clone(), label.clone(), record.getSecond().get(), trainer, rbmNr));
 			else {
@@ -514,7 +662,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 					greedyTrainingTasks.get(batchsize%threadCount).rbmNr = rbmNr;
 				}				
 			}
-			
+			//run tasks
 			if(batchsize%threadCount==threadCount-1) {
 				List<Future<Matrix>> futureUpdates = executor.invokeAll(greedyTrainingTasks);
 				for (int i = 0; i < futureUpdates.size(); i++) {
@@ -528,6 +676,7 @@ public class RBMClassifierTrainingJob extends AbstractJob{
     		batchsize++;
     	}
 		
+		//run remaining tasks
 		if(batchsize%20!=0) {
 			List<Future<Matrix>> futureUpdates = executor.invokeAll(greedyTrainingTasks.subList(0, (batchsize-1) %20));
 			for (int i = 0; i < futureUpdates.size(); i++) {
@@ -546,8 +695,21 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
+	/**
+	 * Train greedy mr.
+	 *
+	 * @param rbmNr the rbm nr
+	 * @param batch the batch
+	 * @param iteration the iteration
+	 * @param learningrate the learningrate
+	 * @return true, if successful
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws InterruptedException the interrupted exception
+	 * @throws ClassNotFoundException the class not found exception
+	 */
 	private boolean trainGreedyMR(int rbmNr, Path batch, int iteration, double learningrate)
 			throws IOException, InterruptedException, ClassNotFoundException {
+		//run greedy pretraining as map reduce job
 		long batchsize;
 		HadoopUtil.delete(getConf(), getTempPath(WEIGHT_UPDATES));
 		HadoopUtil.cacheFiles(getOutputPath(), getConf());
@@ -573,6 +735,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return true;
 	}
 
+	/**
+	 * calculate classifiers error after 1 iteration of sampling.
+	 *
+	 * @param batch the batch
+	 * @return the error
+	 */
+	@SuppressWarnings("unused")
 	private double classifierError(Path batch) {
     	double error = 0;
     	int counter = 0;
@@ -586,6 +755,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return error;
 	}
 	
+	/**
+	 * Calculates error of fann.
+	 *
+	 * @param feedForwardNet the feed forward net
+	 * @param batch the batch
+	 * @return the error
+	 */
 	private double feedForwardError(DeepBoltzmannMachine feedForwardNet, Path batch) {
 		double error = 0;
     	int counter = 0;
@@ -604,6 +780,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return error;
 	}
 	
+	/**
+	 * Rbms reconstruction error.
+	 *
+	 * @param batch the batch
+	 * @param rbmNr the rbm nr
+	 * @return the error
+	 */
 	private double rbmError(Path batch, int rbmNr) {
 		DeepBoltzmannMachine dbm = rbmCl.getDbm();
 		Vector label = new DenseVector(((LabeledSimpleRBM)dbm.getRBM(dbm.getRbmCount()-1)).getSoftmaxLayer().getNeuronCount());
@@ -634,6 +817,14 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		return error;
 	}
 
+	/**
+	 * Change and save model.
+	 *
+	 * @param output the output
+	 * @param batchsize the batchsize
+	 * @param momentum the momentum
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private void changeAndSaveModel(Path output, long batchsize, double momentum) throws IOException {
 		Map<Integer,Matrix> updates = new HashMap<Integer,Matrix>();
 
@@ -653,6 +844,13 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		rbmCl.serialize(output, getConf());
 	}
 
+	/**
+	 * Update rbm classifier with given updates.
+	 *
+	 * @param batchsize the batchsize
+	 * @param momentum the momentum
+	 * @param updates the updates
+	 */
 	private void updateRbmCl(long batchsize, double momentum, Map<Integer, Matrix> updates) {
 		for(Integer rbmNr : updates.keySet()) {
 			if(momentum>0)
