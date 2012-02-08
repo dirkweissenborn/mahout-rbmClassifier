@@ -116,15 +116,6 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception {
-		if(args==null|| args.length==0)
-			args = new String[]{
-		          "--input", "/home/dirk/mnist/440chunks/chunk0",
-		          "--output", "/home/dirk/models/model_440chunks_nofine",
-		          //"--structure", "784,500,1000",
-		          "--learningrate","0.05",
-		          "--labelcount", "10"	,
-		          "--epochs", "2",
-		          "--monitor","-nb","-ng","--mapreduce"};
 	    ToolRunner.run(new Configuration(), new RBMClassifierTrainingJob(), args);
 	  }
 	
@@ -241,6 +232,11 @@ public class RBMClassifierTrainingJob extends AbstractJob{
 		    		counter++;
 		    	}
 		    }
+		    if(biases==null) {
+			    logger.info("No training data found!");
+			    return -1;
+		    }
+		    
 		    rbmCl.getDbm().getLayer(0).setBiases(biases.divide(counter));
 		    logger.info("Biases initialized");
 	    }
